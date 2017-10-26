@@ -18,3 +18,7 @@ article {
     min-height: 100vh;
     padding: 5px 15px;
 }
+
+article li {
+    margin-bottom: 20px;
+}
