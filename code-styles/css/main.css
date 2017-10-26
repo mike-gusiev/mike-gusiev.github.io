@@ -1,0 +1,20 @@
+body {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+aside {
+    width: 200px;
+    min-height: 100vh;
+    font-size: 14px;
+    border-right: 1px solid #ececec;
+}
+
+article {
+    width: calc(100% - 200px);
+    min-height: 100vh;
+    padding: 5px 15px;
+}
