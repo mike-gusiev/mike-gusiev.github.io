@@ -44,8 +44,42 @@
             <li>
                 Always write (and refactor) code into ES6 styles. ES5 is already obsolete! You may use ES5 only for
                 native modules, which are not being compiled by WebPack, Gulp, etc.
+                <br>
+                <a href="#accordion1"
+                   data-toggle="collapse"
+                   aria-expanded="false"
+                   aria-controls="accordion1"
+                >
+                    Example
+                </a>
 
-                <pre>
+                <pre id="accordion1" class="collapse" role="tabpanel">
+<code class="js">
+    //bad
+    var x = 3;
+    function myFunc() {
+        return 10;
+    }
+
+    //good
+    let x = 3;
+    const myFunc = () => 10;
+</code>
+                </pre>
+            </li>
+            <li>
+                Always write (and refactor) code into ES6 styles. ES5 is already obsolete! You may use ES5 only for
+                native modules, which are not being compiled by WebPack, Gulp, etc.
+                <br>
+                <a href="#accordion2"
+                   data-toggle="collapse"
+                   aria-expanded="false"
+                   aria-controls="accordion2"
+                >
+                    Example
+                </a>
+
+                <pre id="accordion2" class="collapse" role="tabpanel">
 <code class="js">
     //bad
     var x = 3;
@@ -60,6 +94,7 @@
                 </pre>
             </li>
         </ol>
+
     </article>
 
     <script src="./vendor/jquery-3.2.1.slim.min.js"></script>
