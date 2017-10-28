@@ -36,8 +36,8 @@
             was before you.
         </li>
         <li>
-            Always write (and refactor) code into ES6 styles. ES5 is already obsolete! You may use ES5 only for
-            native modules, which are not being compiled by WebPack, Gulp, etc.
+            Always write (and refactor) code into ES6 style. ES5 is already obsolete! You may use ES5 only for
+            native modules, which are not being compiled by WebPack or etc.
             <br>
             <a href="#accordion1"
                data-toggle="collapse"
@@ -51,39 +51,25 @@
 <code class="js">
 //bad
 var x = 3;
-function myFunc() {
-    return 10;
+function doubleMe(x) {
+    return x * 2;
+}
+var myClass= {
+    fun: function() {
+        var str = '...';
+        str.toUpperCase();
+    }
 }
 
 //good
 let x = 3;
-const myFunc = () => 10;
-</code>
-            </pre>
-        </li>
-        <li>
-            Always write (and refactor) code into ES6 styles. ES5 is already obsolete! You may use ES5 only for
-            native modules, which are not being compiled by WebPack, Gulp, etc.
-            <br>
-            <a href="#accordion2"
-               data-toggle="collapse"
-               aria-expanded="false"
-               aria-controls="accordion2"
-            >
-                Example
-            </a>
-
-            <pre id="accordion2" class="collapse" role="tabpanel">
-<code class="js">
-//bad
-var x = 3;
-function myFunc() {
-    return 10;
+const doubleMe = (x) => x * 2;
+export default MyClass {
+    fun() {
+        const str = '...';
+        str.toUpperCase();
+    }
 }
-
-//good
-let x = 3;
-const myFunc = () => 10;
 </code>
             </pre>
         </li>
