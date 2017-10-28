@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="./vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="./vendor/highlight/vs.min.css">
     <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
@@ -43,6 +44,20 @@
             <li>
                 Always write (and refactor) code into ES6 styles. ES5 is already obsolete! You may use ES5 only for
                 native modules, which are not being compiled by WebPack, Gulp, etc.
+
+                <pre>
+<code class="js">
+    //bad
+    var x = 3;
+    function myFunc() {
+        return 10;
+    }
+
+    //good
+    let x = 3;
+    const myFunc = () => 10;
+</code>
+                </pre>
             </li>
         </ol>
     </article>
@@ -50,5 +65,7 @@
     <script src="./vendor/jquery-3.2.1.slim.min.js"></script>
     <script src="./vendor/bootstrap/popper.min.js"></script>
     <script src="./vendor/bootstrap/bootstrap.min.js"></script>
+    <script src="./vendor/highlight/highlight.min.js"></script>
+    <script>hljs && hljs.initHighlightingOnLoad();</script>
 </body>
 </html>
