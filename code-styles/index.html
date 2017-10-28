@@ -11,96 +11,90 @@
 </head>
 <body>
 
-    <aside>
-        <ul class="nav flex-column">
-            <li class="nav-item">
-                <a class="nav-link active" href="javascript:;">Best Practices</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="javascript:;">Code Styling</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="javascript:;">Variables Declarations</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="javascript:;">Functions Declarations</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="javascript:;">Conditional Blocks</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="javascript:;">Classes and Modules</a>
-            </li>
-        </ul>
-    </aside>
+<nav class="navbar fixed-top navbar-light bg-light">
+    <a class="navbar-brand" href="javascript:void(0);">Best Practices</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"
+    >
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" href="javascript:;">Code Styling</a>
+            <a class="nav-item nav-link" href="javascript:;">Variables Declarations</a>
+            <a class="nav-item nav-link" href="javascript:;">Functions Declarations</a>
+            <a class="nav-item nav-link" href="javascript:;">Conditional Blocks</a>
+            <a class="nav-item nav-link" href="javascript:;">Classes and Modules</a>
+        </div>
+    </div>
+</nav>
 
-    <article>
-        <h3>Best Practices</h3>
-        <ol>
-            <li>
-                Whenever you see a bad code, you have to refactor it! You should always leave a better code, then it
-                was before you.
-            </li>
-            <li>
-                Always write (and refactor) code into ES6 styles. ES5 is already obsolete! You may use ES5 only for
-                native modules, which are not being compiled by WebPack, Gulp, etc.
-                <br>
-                <a href="#accordion1"
-                   data-toggle="collapse"
-                   aria-expanded="false"
-                   aria-controls="accordion1"
-                >
-                    Example
-                </a>
+<article>
+    <ol>
+        <li>
+            Whenever you see a bad code, you have to refactor it! You should always leave a better code, then it
+            was before you.
+        </li>
+        <li>
+            Always write (and refactor) code into ES6 styles. ES5 is already obsolete! You may use ES5 only for
+            native modules, which are not being compiled by WebPack, Gulp, etc.
+            <br>
+            <a href="#accordion1"
+               data-toggle="collapse"
+               aria-expanded="false"
+               aria-controls="accordion1"
+            >
+                Example
+            </a>
 
-                <pre id="accordion1" class="collapse" role="tabpanel">
+            <pre id="accordion1" class="collapse" role="tabpanel">
 <code class="js">
-    //bad
-    var x = 3;
-    function myFunc() {
-        return 10;
-    }
+//bad
+var x = 3;
+function myFunc() {
+    return 10;
+}
 
-    //good
-    let x = 3;
-    const myFunc = () => 10;
+//good
+let x = 3;
+const myFunc = () => 10;
 </code>
-                </pre>
-            </li>
-            <li>
-                Always write (and refactor) code into ES6 styles. ES5 is already obsolete! You may use ES5 only for
-                native modules, which are not being compiled by WebPack, Gulp, etc.
-                <br>
-                <a href="#accordion2"
-                   data-toggle="collapse"
-                   aria-expanded="false"
-                   aria-controls="accordion2"
-                >
-                    Example
-                </a>
+            </pre>
+        </li>
+        <li>
+            Always write (and refactor) code into ES6 styles. ES5 is already obsolete! You may use ES5 only for
+            native modules, which are not being compiled by WebPack, Gulp, etc.
+            <br>
+            <a href="#accordion2"
+               data-toggle="collapse"
+               aria-expanded="false"
+               aria-controls="accordion2"
+            >
+                Example
+            </a>
 
-                <pre id="accordion2" class="collapse" role="tabpanel">
+            <pre id="accordion2" class="collapse" role="tabpanel">
 <code class="js">
-    //bad
-    var x = 3;
-    function myFunc() {
-        return 10;
-    }
+//bad
+var x = 3;
+function myFunc() {
+    return 10;
+}
 
-    //good
-    let x = 3;
-    const myFunc = () => 10;
+//good
+let x = 3;
+const myFunc = () => 10;
 </code>
-                </pre>
-            </li>
-        </ol>
+            </pre>
+        </li>
+    </ol>
 
-    </article>
+</article>
 
-    <script src="./vendor/jquery-3.2.1.slim.min.js"></script>
-    <script src="./vendor/bootstrap/popper.min.js"></script>
-    <script src="./vendor/bootstrap/bootstrap.min.js"></script>
-    <script src="./vendor/highlight/highlight.min.js"></script>
-    <script>hljs && hljs.initHighlightingOnLoad();</script>
+<script src="./vendor/jquery-3.2.1.slim.min.js"></script>
+<script src="./vendor/bootstrap/popper.min.js"></script>
+<script src="./vendor/bootstrap/bootstrap.min.js"></script>
+<script src="./vendor/highlight/highlight.min.js"></script>
+<script>hljs && hljs.initHighlightingOnLoad();</script>
 </body>
 </html>
