@@ -116,6 +116,100 @@ var x = y + 5;
 </code>
             </pre>
         </li>
+
+        <li>
+            Use indentation when making long method chains. Use a leading dot, which emphasizes that the line is a
+            method call, not a new statement.
+            <a href="#accordion5" data-toggle="collapse" aria-expanded="false" aria-controls="accordion5">Example</a>
+
+            <pre id="accordion5" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+$('#items').find('.selected').highlight().end().find('.open').updateCount();
+
+// good
+$('#items')
+    .find('.selected').highlight().end()
+    .find('.open').updateCount();
+</code>
+            </pre>
+        </li>
+        <li>
+            Leading commas: Nope.
+            <a href="#accordion6" data-toggle="collapse" aria-expanded="false" aria-controls="accordion6">Example</a>
+
+            <pre id="accordion6" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+var story = [
+    once
+  , upon
+  , aTime
+];
+
+// good
+var story = [
+    once,
+    upon,
+    aTime
+];
+</code>
+            </pre>
+        </li>
+        <li>
+            Additional trailing comma: Nope.
+            <a href="#accordion7" data-toggle="collapse" aria-expanded="false" aria-controls="accordion7">Example</a>
+
+            <pre id="accordion7" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+var hero = {
+    firstName: 'Kevin',
+    lastName: 'Flynn',
+};
+
+// good
+var hero = {
+    firstName: 'Kevin',
+    lastName: 'Flynn'
+};
+</code>
+            </pre>
+        </li>
+        <li>
+            Semicolons are mandatory
+            <a href="#accordion8" data-toggle="collapse" aria-expanded="false" aria-controls="accordion8">Example</a>
+
+            <pre id="accordion8" class="collapse" role="tabpanel">
+<code class="js">
+//bad
+var $block = this.$element.find('.block')
+$block.css('border', '1px solid #ccc')
+
+//good
+var $block = this.$element.find('.block');
+$block.css('border', '1px solid #ccc');
+</code>
+            </pre>
+        </li>
+        <li>
+            Useless parentheses around expressions should be removed to prevent any misunderstanding
+            <a href="#accordion9" data-toggle="collapse" aria-expanded="false" aria-controls="accordion9">Example</a>
+
+            <pre id="accordion9" class="collapse" role="tabpanel">
+<code class="js">
+//bad
+return (x);
+return (x + 1);
+int x = (y / 2 + 1);
+
+//good
+return x;
+return x + 1;
+int x = y / 2 + 1;
+</code>
+            </pre>
+        </li>
     </ol>
 </article>
 
