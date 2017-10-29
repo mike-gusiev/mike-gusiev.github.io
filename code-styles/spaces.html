@@ -32,9 +32,89 @@
 <article>
     <ol>
         <li>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus et eum facilis inventore itaque
-            laboriosam nesciunt numquam sequi. Aliquam autem beatae dicta dignissimos error eum excepturi maxime nostrum
-            vel voluptates!
+            Use 4 spaces instead of tabs. Configure your IDE to always use 4 spaces in every language. PhpStorm uses 2
+            tabs in some languages (CSS, Less, JSON), make sure that you've set 4 spaces for that languages
+            (Preferences - Editor - Code Style).
+        </li>
+        <li>
+            Place 1 space before the leading brace
+            <a href="#accordion1" data-toggle="collapse" aria-expanded="false" aria-controls="accordion1">Example</a>
+
+            <pre id="accordion1" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+function test(){
+    console.log('test');
+}
+dog.set('attr',{
+    age: '1 year',
+    breed: 'Bernese Mountain Dog'
+});
+
+// good
+function test() {
+    console.log('test');
+}
+dog.set('attr', {
+    age: '1 year',
+    breed: 'Bernese Mountain Dog'
+});
+</code>
+            </pre>
+        </li>
+        <li>
+            Place 1 space before the opening parenthesis in control statements (if, while, etc.). Place no space
+            before the argument list in function calls and declarations. Place one space before the argument list in
+            anonymous function declarations.
+            <a href="#accordion2" data-toggle="collapse" aria-expanded="false" aria-controls="accordion2">Example</a>
+
+            <pre id="accordion2" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+if(isJedi) {
+    fight ();
+}
+
+// good
+if (isJedi) {
+    fight();
+}
+
+// bad
+function fight () {
+    console.log ('Swooosh!');
+}
+
+// good
+function fight() {
+    console.log('Swooosh!');
+}
+
+// bad
+var fight = function() {
+    console.log ('Swooosh!');
+}
+
+// good
+var fight = function () {
+    console.log ('Swooosh!');
+}
+</code>
+            </pre>
+        </li>
+        <li>
+            Set off operators with spaces.
+            <a href="#accordion3" data-toggle="collapse" aria-expanded="false" aria-controls="accordion3">Example</a>
+
+            <pre id="accordion3" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+var x=y+5;
+
+// good
+var x = y + 5;
+</code>
+            </pre>
         </li>
     </ol>
 </article>

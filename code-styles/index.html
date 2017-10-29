@@ -42,7 +42,7 @@
 
             <pre id="accordion1" class="collapse" role="tabpanel">
 <code class="js">
-//bad
+// bad
 var x = 3;
 function doubleMe(x) {
     return x * 2;
@@ -54,7 +54,7 @@ var myClass= {
     }
 }
 
-//good
+// good
 let x = 3;
 const doubleMe = (x) => x * 2;
 export default MyClass {
@@ -74,7 +74,7 @@ export default MyClass {
 
             <pre id="accordion2" class="collapse" role="tabpanel">
 <code class="js">
-//never commit this garbage into the repo
+// never commit this garbage into the repo
 onClick(event) {
     /*if (event && event.target) {
         event.target.setAttribute('data-id', '');
@@ -85,7 +85,7 @@ onClick(event) {
     debugger;
     alert('Button was clicked!');
 }
-//'event' variable should also be removed from arguments list, because it will be unused after you remove comments
+// 'event' variable should also be removed from arguments list, because it will be unused after you remove comments
 </code>
             </pre>
         </li>
@@ -96,7 +96,7 @@ onClick(event) {
 
             <pre id="accordion3" class="collapse" role="tabpanel">
 <code class="js">
-//bad
+// bad
 initProperties() {
     this.mainTitle = this.config.title;
     let items;
@@ -108,7 +108,7 @@ onDataGet(result) {
     this.cardsLength = result.count;
 }
 
-//good
+// good
 initProperties() {
     this.mainTitle = this.config.title || 'Default title';
     const items = [];
@@ -129,7 +129,7 @@ onDataGet(result) {
 
             <pre id="accordion4" class="collapse" role="tabpanel">
 <code class="js">
-//bad
+// bad
 parseData(data) {
     if (data.settings.screen) {
         //...
@@ -137,7 +137,7 @@ parseData(data) {
     data.products[0].name = 'name';
 }
 
-//good
+// good
 parseData(data) {
     if (data.settings && data.settings.screen) {
         //...
