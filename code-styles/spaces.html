@@ -182,11 +182,11 @@ var hero = {
 
             <pre id="accordion8" class="collapse" role="tabpanel">
 <code class="js">
-//bad
+// bad
 var $block = this.$element.find('.block')
 $block.css('border', '1px solid #ccc')
 
-//good
+// good
 var $block = this.$element.find('.block');
 $block.css('border', '1px solid #ccc');
 </code>
@@ -198,15 +198,166 @@ $block.css('border', '1px solid #ccc');
 
             <pre id="accordion9" class="collapse" role="tabpanel">
 <code class="js">
-//bad
+// bad
 return (x);
 return (x + 1);
 int x = (y / 2 + 1);
 
-//good
+// good
 return x;
 return x + 1;
 int x = y / 2 + 1;
+</code>
+            </pre>
+        </li>
+        <li>
+            Perform type coercion at the beginning of the statement
+            <a href="#accordion10" data-toggle="collapse" aria-expanded="false" aria-controls="accordion10">Example</a>
+
+            <pre id="accordion10" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+var totalScore = this.reviewScore + '';
+
+// good
+var totalScore = '' + this.reviewScore;
+
+// bad
+var totalScore = '' + this.reviewScore + ' total score';
+
+// good
+var totalScore = this.reviewScore + ' total score';
+</code>
+            </pre>
+        </li>
+        <li>
+            Use parseInt for Numbers and always with a radix for type casting
+            <a href="#accordion11" data-toggle="collapse" aria-expanded="false" aria-controls="accordion11">Example</a>
+
+            <pre id="accordion11" class="collapse" role="tabpanel">
+<code class="js">
+var inputValue = '4';
+
+// bad
+var val = new Number(inputValue);
+
+// bad
+var val = +inputValue;
+
+// bad
+var val = inputValue >> 0;
+
+// bad
+var val = parseInt(inputValue);
+
+// good
+var val = Number(inputValue);
+
+// good
+var val = parseInt(inputValue, 10);
+</code>
+            </pre>
+        </li>
+        <li>
+            Booleans:
+            <a href="#accordion12" data-toggle="collapse" aria-expanded="false" aria-controls="accordion12">Example</a>
+
+            <pre id="accordion12" class="collapse" role="tabpanel">
+<code class="js">
+var age = 0;
+
+// bad
+var hasAge = new Boolean(age);
+
+// good
+var hasAge = Boolean(age);
+
+// good
+var hasAge = !!age;
+</code>
+            </pre>
+        </li>
+        <li>
+            Use dot notation when accessing properties
+            <a href="#accordion13" data-toggle="collapse" aria-expanded="false" aria-controls="accordion13">Example</a>
+
+            <pre id="accordion13" class="collapse" role="tabpanel">
+<code class="js">
+var luke = {
+    jedi: true,
+    age: 28
+};
+
+// bad
+var isJedi = luke['jedi'];
+
+// good
+var isJedi = luke.jedi;
+</code>
+            </pre>
+        </li>
+        <li>
+            Use subscript notation [] when accessing properties with a variable or a property with underscore
+            <a href="#accordion14" data-toggle="collapse" aria-expanded="false" aria-controls="accordion14">Example</a>
+
+            <pre id="accordion14" class="collapse" role="tabpanel">
+<code class="js">
+var luke = {
+    jedi: true,
+    is_evil: false,
+    age: 28
+};
+
+function getProp(prop) {
+    return luke[prop];
+}
+
+var isJedi = getProp('jedi');
+var isEvil = luke['is_evil'];
+</code>
+            </pre>
+        </li>
+        <li>
+            Try to avoid comments in your code. Your code should be readable without comments! Delete comments
+            wherever it possible!
+        </li>
+        <li>
+            Use only /** ... */ for multi-line comments. Don't use // for multi-line comments!
+            <a href="#accordion15" data-toggle="collapse" aria-expanded="false" aria-controls="accordion15">Example</a>
+
+            <pre id="accordion15" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+// make() returns a new element
+// based on the passed in tag name
+
+// good
+/**
+ * make() returns a new element
+ * based on the passed in tag name
+ */
+</code>
+            </pre>
+        </li>
+        <li>
+            Use // for single line comments. Use a new line for every comment. Don't use inline comments!
+            <a href="#accordion16" data-toggle="collapse" aria-expanded="false" aria-controls="accordion16">Example</a>
+
+            <pre id="accordion16" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+var active = true;  // is current tab
+
+//good
+
+// is current tab
+var active = true;
+
+function getType() {
+    // set the default type to 'no type'
+    var type = this._type || 'no type';
+    return type;
+}
 </code>
             </pre>
         </li>
