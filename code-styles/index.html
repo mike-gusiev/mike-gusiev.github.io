@@ -38,7 +38,6 @@
         <li>
             Always write (and refactor) code into ES6 style. ES5 is already obsolete! You may use ES5 only for
             native modules, which are not being compiled by WebPack or etc.
-            <br>
             <a href="#accordion1"
                data-toggle="collapse"
                aria-expanded="false"
@@ -69,6 +68,74 @@ export default MyClass {
         const str = '...';
         str.toUpperCase();
     }
+}
+</code>
+            </pre>
+        </li>
+        <li>
+            Never commit commented out blocks of code, "<b>console.log</b>", "<b>debugger;</b>" and "<b>alert()</b>"!
+            Always remove obsolete and unused variables and lines code. Don't make other team members to do your work
+            instead of you.
+            <a href="#accordion2"
+               data-toggle="collapse"
+               aria-expanded="false"
+               aria-controls="accordion2"
+            >
+                Example
+            </a>
+
+            <pre id="accordion2" class="collapse" role="tabpanel">
+<code class="js">
+//never commit this garbage into the repo
+onClick(event) {
+    /*if (event && event.target) {
+        event.target.setAttribute('data-id', '');
+    }*/
+
+    //such lines too:
+    console.log('onClick', event);
+    debugger;
+    alert('Button was clicked!');
+}
+//event variable should also be removed from arguments list, because it will be unused after you remove comments
+</code>
+            </pre>
+        </li>
+        <li>
+            Use should always predict which variables might break your application. Default values must be set for such
+            cases.
+            <a href="#accordion3"
+               data-toggle="collapse"
+               aria-expanded="false"
+               aria-controls="accordion3"
+            >
+                Example
+            </a>
+
+            <pre id="accordion3" class="collapse" role="tabpanel">
+<code class="js">
+//bad
+initProperties() {
+    this.mainTitle = this.config.title;
+    let items;
+    if (...) {
+        // some logic that defines array of items
+    }
+}
+onDataGet(result) {
+    this.cardsLength = result.count;
+}
+
+//good
+initProperties() {
+    this.mainTitle = this.config.title || 'Default title';
+    const items = [];
+    if (...) {
+        // your new logic have to push items into existing array, instead of defining a new array
+    }
+}
+onDataGet(result) {
+    this.cardsLength = result.count || 0;
 }
 </code>
             </pre>
