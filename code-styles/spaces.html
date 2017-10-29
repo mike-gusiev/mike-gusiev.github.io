@@ -46,6 +46,9 @@
 function test(){
     console.log('test');
 }
+const test = () =>{
+    console.log('test');
+}
 dog.set('attr',{
     age: '1 year',
     breed: 'Bernese Mountain Dog'
@@ -53,6 +56,9 @@ dog.set('attr',{
 
 // good
 function test() {
+    console.log('test');
+}
+const test = () => {
     console.log('test');
 }
 dog.set('attr', {
@@ -91,12 +97,22 @@ function fight() {
 }
 
 // bad
-var fight = function() {
+const fight = function() {
     console.log ('Swooosh!');
 }
 
 // good
-var fight = function () {
+const fight = function () {
+    console.log ('Swooosh!');
+}
+
+// bad
+const fight =()=> {
+    console.log ('Swooosh!');
+}
+
+// good
+const fight = () => {
     console.log ('Swooosh!');
 }
 </code>
@@ -109,10 +125,10 @@ var fight = function () {
             <pre id="accordion3" class="collapse" role="tabpanel">
 <code class="js">
 // bad
-var x=y+5;
+const x=y+5;
 
 // good
-var x = y + 5;
+const x = y + 5;
 </code>
             </pre>
         </li>
@@ -141,14 +157,14 @@ $('#items')
             <pre id="accordion6" class="collapse" role="tabpanel">
 <code class="js">
 // bad
-var story = [
+const story = [
     once
   , upon
   , aTime
 ];
 
 // good
-var story = [
+const story = [
     once,
     upon,
     aTime
@@ -163,13 +179,13 @@ var story = [
             <pre id="accordion7" class="collapse" role="tabpanel">
 <code class="js">
 // bad
-var hero = {
+const hero = {
     firstName: 'Kevin',
     lastName: 'Flynn',
 };
 
 // good
-var hero = {
+const hero = {
     firstName: 'Kevin',
     lastName: 'Flynn'
 };
@@ -183,11 +199,11 @@ var hero = {
             <pre id="accordion8" class="collapse" role="tabpanel">
 <code class="js">
 // bad
-var $block = this.$element.find('.block')
+const $block = this.$element.find('.block')
 $block.css('border', '1px solid #ccc')
 
 // good
-var $block = this.$element.find('.block');
+const $block = this.$element.find('.block');
 $block.css('border', '1px solid #ccc');
 </code>
             </pre>
@@ -201,12 +217,16 @@ $block.css('border', '1px solid #ccc');
 // bad
 return (x);
 return (x + 1);
-int x = (y / 2 + 1);
+const x = (y / 2 + 1);
+const func = (n) => {
+    return n * 2;
+}
 
 // good
 return x;
 return x + 1;
-int x = y / 2 + 1;
+const x = y / 2 + 1;
+const func = n => n * 2;
 </code>
             </pre>
         </li>
@@ -217,16 +237,16 @@ int x = y / 2 + 1;
             <pre id="accordion10" class="collapse" role="tabpanel">
 <code class="js">
 // bad
-var totalScore = this.reviewScore + '';
+const totalScore = this.reviewScore + '';
 
 // good
-var totalScore = '' + this.reviewScore;
+const totalScore = '' + this.reviewScore;
 
 // bad
-var totalScore = '' + this.reviewScore + ' total score';
+const totalScore = '' + this.reviewScore + ' total score';
 
 // good
-var totalScore = this.reviewScore + ' total score';
+const totalScore = this.reviewScore + ' total score';
 </code>
             </pre>
         </li>
@@ -236,25 +256,25 @@ var totalScore = this.reviewScore + ' total score';
 
             <pre id="accordion11" class="collapse" role="tabpanel">
 <code class="js">
-var inputValue = '4';
+const inputValue = '4';
 
 // bad
-var val = new Number(inputValue);
+const val = new Number(inputValue);
 
 // bad
-var val = +inputValue;
+const val = +inputValue;
 
 // bad
-var val = inputValue >> 0;
+const val = inputValue >> 0;
 
 // bad
-var val = parseInt(inputValue);
+const val = parseInt(inputValue);
 
 // good
-var val = Number(inputValue);
+const val = Number(inputValue);
 
 // good
-var val = parseInt(inputValue, 10);
+const val = parseInt(inputValue, 10);
 </code>
             </pre>
         </li>
@@ -264,16 +284,16 @@ var val = parseInt(inputValue, 10);
 
             <pre id="accordion12" class="collapse" role="tabpanel">
 <code class="js">
-var age = 0;
+const age = 0;
 
 // bad
-var hasAge = new Boolean(age);
+const hasAge = new Boolean(age);
 
 // good
-var hasAge = Boolean(age);
+const hasAge = Boolean(age);
 
 // good
-var hasAge = !!age;
+const hasAge = !!age;
 </code>
             </pre>
         </li>
@@ -283,16 +303,16 @@ var hasAge = !!age;
 
             <pre id="accordion13" class="collapse" role="tabpanel">
 <code class="js">
-var luke = {
+const luke = {
     jedi: true,
     age: 28
 };
 
 // bad
-var isJedi = luke['jedi'];
+const isJedi = luke['jedi'];
 
 // good
-var isJedi = luke.jedi;
+const isJedi = luke.jedi;
 </code>
             </pre>
         </li>
@@ -302,18 +322,18 @@ var isJedi = luke.jedi;
 
             <pre id="accordion14" class="collapse" role="tabpanel">
 <code class="js">
-var luke = {
+const luke = {
     jedi: true,
     is_evil: false,
     age: 28
 };
 
-function getProp(prop) {
+const getProp = prop => {
     return luke[prop];
 }
 
-var isJedi = getProp('jedi');
-var isEvil = luke['is_evil'];
+const isJedi = getProp('jedi');
+const isEvil = luke['is_evil'];
 </code>
             </pre>
         </li>
@@ -346,14 +366,14 @@ var isEvil = luke['is_evil'];
             <pre id="accordion16" class="collapse" role="tabpanel">
 <code class="js">
 // bad
-var active = true;  // is current tab
+const active = true;  // is current tab
 
 //good
 
 // is current tab
-var active = true;
+const active = true;
 
-function getType() {
+const getType = () => {
     // set the default type to 'no type'
     var type = this._type || 'no type';
     return type;
