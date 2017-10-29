@@ -38,13 +38,7 @@
         <li>
             Always write (and refactor) code into ES6 style. ES5 is already obsolete! You may use ES5 only for
             native modules, which are not being compiled by WebPack or etc.
-            <a href="#accordion1"
-               data-toggle="collapse"
-               aria-expanded="false"
-               aria-controls="accordion1"
-            >
-                Example
-            </a>
+            <a href="#accordion1" data-toggle="collapse" aria-expanded="false" aria-controls="accordion1">Example</a>
 
             <pre id="accordion1" class="collapse" role="tabpanel">
 <code class="js">
@@ -76,13 +70,7 @@ export default MyClass {
             Never commit commented out blocks of code, "<b>console.log</b>", "<b>debugger;</b>" and "<b>alert()</b>"!
             Always remove obsolete and unused variables and lines code. Don't make other team members to do your work
             instead of you.
-            <a href="#accordion2"
-               data-toggle="collapse"
-               aria-expanded="false"
-               aria-controls="accordion2"
-            >
-                Example
-            </a>
+            <a href="#accordion2" data-toggle="collapse" aria-expanded="false" aria-controls="accordion2">Example</a>
 
             <pre id="accordion2" class="collapse" role="tabpanel">
 <code class="js">
@@ -97,20 +85,14 @@ onClick(event) {
     debugger;
     alert('Button was clicked!');
 }
-//event variable should also be removed from arguments list, because it will be unused after you remove comments
+//'event' variable should also be removed from arguments list, because it will be unused after you remove comments
 </code>
             </pre>
         </li>
         <li>
             Use should always predict which variables might break your application. Default values must be set for such
             cases.
-            <a href="#accordion3"
-               data-toggle="collapse"
-               aria-expanded="false"
-               aria-controls="accordion3"
-            >
-                Example
-            </a>
+            <a href="#accordion3" data-toggle="collapse" aria-expanded="false" aria-controls="accordion3">Example</a>
 
             <pre id="accordion3" class="collapse" role="tabpanel">
 <code class="js">
@@ -136,6 +118,33 @@ initProperties() {
 }
 onDataGet(result) {
     this.cardsLength = result.count || 0;
+}
+</code>
+            </pre>
+        </li>
+        <li>
+            Always check suspicious variables and objects before accessing to them. Your application should not be
+            broken because of undefined data.
+            <a href="#accordion4" data-toggle="collapse" aria-expanded="false" aria-controls="accordion4">Example</a>
+
+            <pre id="accordion4" class="collapse" role="tabpanel">
+<code class="js">
+//bad
+parseData(data) {
+    if (data.settings.screen) {
+        //...
+    }
+    data.products[0].name = 'name';
+}
+
+//good
+parseData(data) {
+    if (data.settings && data.settings.screen) {
+        //...
+    }
+    if (data.products && data.products.length) {
+        data.products[0].name = 'name';
+    }
 }
 </code>
             </pre>
