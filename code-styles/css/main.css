@@ -25,3 +25,10 @@ button.navbar-toggler {
     font-size: 12pt;
     padding: 10px;
 }
+
+a.image-preview, a.image-preview:hover {
+    display: inline-block;
+    max-width: 300px;
+    max-height: 300px;
+    text-decoration: none;
+}
