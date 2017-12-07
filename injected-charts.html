@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chart</title>
+</head>
+<body>
+
+<div class="chart-wrapper">
+    <canvas id="price"></canvas>
+    <canvas id="bsr"></canvas>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script>
+    window.drawChart = function (config, id) {
+        var chart2Context = document.getElementById(id).getContext('2d');
+        new Chart(chart2Context, config);
+    };
+
+    window.chartConfigs = {
+        filled: function (title, data, labels, sign, legend) {
+            return {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: legend,
+                            fill: 'start',
+                            lineTension: 0.1,
+                            backgroundColor: 'rgba(255,99,132,0.2)',
+                            borderColor: 'rgba(255,99,132,1)',
+                            borderCapStyle: 'butt',
+                            borderDashOffset: 0.0,
+                            borderJoinStyle: 'miter',
+                            pointBorderColor: 'rgba(255,99,132,0.2)',
+                            pointBackgroundColor: '#fff',
+                            pointBorderWidth: 1,
+                            pointHoverRadius: 5,
+                            pointHoverBackgroundColor: 'rgba(255,99,132,1)',
+                            pointHoverBorderColor: 'rgba(220,220,220,1)',
+                            pointHoverBorderWidth: 2,
+                            pointRadius: 5,
+                            pointHitRadius: 10,
+                            data: data,
+                        }
+                    ]
+                },
+                options: {
+                    showLines: true,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                callback: function(label) {
+                                    return sign + label;
+                                }
+                            }
+                        }]
+                    },
+                    title:{
+                        display:true,
+                        text: title
+                    },
+                    legend: {
+                        labels: {
+                            usePointStyle: true,
+                            fontStyle: 'background-color: rgba(220,220,220,1)'
+                        },
+                        display: true,
+                        position: 'right'
+                    },
+                    tooltips: {
+                        enabled: true,
+                        mode: 'label'
+                    }
+                }
+            };
+        },
+        lines: function (title, data, labels, sign, legend) {
+            return {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: legend,
+                            fill: false,
+                            backgroundColor: '#fe5e83',
+                            borderColor: '#fe5e83',
+                            borderCapStyle: 'butt',
+                            borderDashOffset: 0.0,
+                            borderJoinStyle: 'miter',
+                            pointBorderWidth: 1,
+                            pointHoverRadius: 5,
+                            pointHoverBorderColor: 'rgba(220,220,220,1)',
+                            pointHoverBorderWidth: 2,
+                            pointRadius: 5,
+                            pointHitRadius: 10,
+                            data: data,
+                        }
+                    ]
+                },
+                options: {
+                    title:{
+                        display:true,
+                        text: title
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                callback: function(label) {
+                                    return sign + label;
+                                }
+                            }
+                        }]
+                    },
+                    legend: {
+                        labels: {
+                            usePointStyle: true
+                        },
+                        display: true,
+                        position: 'right'
+                    },
+                    tooltips: {
+                        enabled: true,
+                        mode: 'label'
+                    }
+                }
+            };
+        }
+    };
+</script>
+
+<script>
+    var priceData = [65, 59, 80, 0, 56, 55, 40];
+    var priceLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+    var priceChartConfig = window.chartConfigs.filled('Price changes', priceData, priceLabels, '$', 'Price');
+    window.drawChart(priceChartConfig, 'price');
+</script>
+
+<script>
+    var bsrData = [65, 59, 80, 0, 56, 55, 40];
+    var bsrLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+    var bsrChartConfig = window.chartConfigs.lines('BSR changes', bsrData, bsrLabels, '', 'BSR');
+    window.drawChart(bsrChartConfig, 'bsr');
+</script>
+
+</body>
+</html>
