@@ -350,7 +350,8 @@ export class MyComponent {
 }
 </code>
             </pre>
-        </li><li>
+        </li>
+        <li>
             Variables, properties and functions which contain Observable, should end with $ sign.
             <a href="#accordion17" data-toggle="collapse" aria-expanded="false" aria-controls="accordion17">Example</a>
 
@@ -375,6 +376,41 @@ store$(storeName: string): Observable<Storage> {
     return this[storeSubject].asObservable();
 }
 const myObservable$ = this.store$('user1');
+</code>
+            </pre>
+        </li>
+    </ol>
+    <h3>React</h3>
+    <ol>
+        <li>
+            Always use <b>propTypes</b>! Even when component doesn't have any props! Put callbacks at the very bottom
+            of propTypes list! Use defaultProps for not required properties.
+            <a href="#accordion18" data-toggle="collapse" aria-expanded="false" aria-controls="accordion18">Example</a>
+
+            <pre id="accordion18" class="collapse" role="tabpanel">
+<code class="js">
+// good
+MyComponent.propTypes = {
+    isVisible: PropTypes.bool,
+    type: PropTypes.oneOf(['News', 'Photos']).isRequired,
+    options: PropTypes.shape({
+        color: PropTypes.string,
+        fontSize: PropTypes.number
+    }),
+    onClick: PropTypes.func.isRequired,
+    onHide: PropTypes.func.isRequired
+};
+
+MyComponent.defaultProps = {
+    isVisible: false,
+    options: {
+        color: '#000',
+        fontSize: '12px'
+    }
+}
+
+// when component doesn't have props, use empty object
+MyComponent2.propTypes = {}
 </code>
             </pre>
         </li>
