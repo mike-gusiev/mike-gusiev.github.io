@@ -204,6 +204,117 @@ parseData(data) {
             </pre>
         </li>
     </ol>
+    <h3>jQuery</h3>
+    <ol>
+        <li>
+            Variables and properties that reference DOM elements should start with a dollar sign.
+            <a href="#accordion15" data-toggle="collapse" aria-expanded="false" aria-controls="accordion15">Example</a>
+
+            <pre id="accordion15" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+const playButton = this.$('.play-button');
+this.muteButton = this.$container.find('.mute-button');
+
+// good
+const $playButton = this.$('.play-button');
+this.$muteButton = this.$container.find('.mute-button');
+</code>
+            </pre>
+        </li>
+        <li>
+            Cache your jQuery selectors.
+            <a href="#accordion9" data-toggle="collapse" aria-expanded="false" aria-controls="accordion9">Example</a>
+
+            <pre id="accordion9" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+$('.sidebar').hide();
+$('.sidebar').css({
+    'background-color': 'pink'
+});
+
+// good
+var $sidebar = $('.sidebar');
+$sidebar.hide();
+$sidebar.css({
+    'background-color': 'pink'
+});
+</code>
+            </pre>
+        </li>
+        <li>
+            Instead of lookup in the whole document, search for elements in your module's children. It's much faster.
+            <a href="#accordion10" data-toggle="collapse" aria-expanded="false" aria-controls="accordion10">Example</a>
+
+            <pre id="accordion10" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+$('.play-button').hide();
+
+// good
+this.$container.find('.play-button').hide();
+</code>
+            </pre>
+        </li>
+        <li>
+            Element type selectors should not be used with class selectors.
+            <a href="#accordion11" data-toggle="collapse" aria-expanded="false" aria-controls="accordion11">Example</a>
+
+            <pre id="accordion11" class="collapse" role="tabpanel">
+<code class="js">
+//bad
+var $products = $('div.products');
+
+//good
+var $products = $('.products');
+</code>
+            </pre>
+        </li>
+        <li>
+            "[type=...]" should be used to select elements by type. Otherwise it affects the performance.
+            <a href="#accordion12" data-toggle="collapse" aria-expanded="false" aria-controls="accordion12">Example</a>
+
+            <pre id="accordion12" class="collapse" role="tabpanel">
+<code class="js">
+//bad
+var $input = $('form input:radio');
+
+//good
+var $input = $('form input[type=radio]');
+</code>
+            </pre>
+        </li>
+        <li>
+            "find" should be used to select the children of an element known by id. Otherwise it affects the
+            performance.
+            <a href="#accordion13" data-toggle="collapse" aria-expanded="false" aria-controls="accordion13">Example</a>
+
+            <pre id="accordion13" class="collapse" role="tabpanel">
+<code class="js">
+//bad
+var $productIds = $('#products div.id');
+
+//good
+var $productIds = $('#products').find('.id');
+</code>
+            </pre>
+        </li>
+        <li>
+            Universal selectors should not be used.
+            <a href="#accordion14" data-toggle="collapse" aria-expanded="false" aria-controls="accordion14">Example</a>
+
+            <pre id="accordion14" class="collapse" role="tabpanel">
+<code class="js">
+//bad. extremely expensive
+$('.buttons > *');
+
+//good
+$('.buttons').children();
+</code>
+            </pre>
+        </li>
+    </ol>
 </article>
 
 <script src="./vendor/jquery-3.2.1.slim.min.js"></script>
