@@ -315,6 +315,70 @@ $('.buttons').children();
             </pre>
         </li>
     </ol>
+    <h3>Angular</h3>
+    <ol>
+        <li>
+            Always set types for your variables. Never use "any" type.
+            <a href="#accordion16" data-toggle="collapse" aria-expanded="false" aria-controls="accordion16">Example</a>
+
+            <pre id="accordion16" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+export class MyComponent {
+
+    @Input() type;
+    public apps: any[];
+    public currentApp = {};
+    public isHidden = true;
+
+    setCategories(apps: any) {
+        // ...
+    }
+}
+
+// good
+export class MyComponent {
+
+    @Input() type: string;
+    public apps: App[];
+    public currentApp: App = {};
+    public isHidden: boolean = true;
+
+    setCategories(apps: App[]): void {
+        // ...
+    }
+}
+</code>
+            </pre>
+        </li><li>
+            Variables, properties and functions which contain Observable, should end with $ sign.
+            <a href="#accordion17" data-toggle="collapse" aria-expanded="false" aria-controls="accordion17">Example</a>
+
+            <pre id="accordion17" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+store(storeName: string): Observable<Storage> {
+    const storeSubject = `${storeName}Subject`;
+    if (!this[storeSubject]) {
+      this[storeSubject] = new Subject<Storage>();
+    }
+    return this[storeSubject].asObservable();
+}
+const myObservable = this.store('user1');
+
+// good
+store$(storeName: string): Observable<Storage> {
+    const storeSubject = `${storeName}Subject`;
+    if (!this[storeSubject]) {
+      this[storeSubject] = new Subject<Storage>();
+    }
+    return this[storeSubject].asObservable();
+}
+const myObservable$ = this.store$('user1');
+</code>
+            </pre>
+        </li>
+    </ol>
 </article>
 
 <script src="./vendor/jquery-3.2.1.slim.min.js"></script>
