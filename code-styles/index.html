@@ -481,8 +481,8 @@ MyComponent.propTypes = {
             </pre>
         </li>
         <li>
-            Qutes in props: use double quotes for all string props without curly braces. In curly braces, use single
-            qoutes. See example.
+            Quotes in props: use double quotes for all string props without curly braces. In curly braces, use single
+            quotes. See example.
             <a href="#accordion22" data-toggle="collapse" aria-expanded="false" aria-controls="accordion22">Example</a>
 
             <pre id="accordion22" class="collapse" role="tabpanel">
@@ -491,6 +491,54 @@ MyComponent.propTypes = {
     name="best component"
     version={'version #' + item.version}
 /&gt;
+</code>
+            </pre>
+        </li>
+        <li>
+            Inline styles: don't put styles object into markup. Extract styles into separate variable or method.
+            <a href="#accordion23" data-toggle="collapse" aria-expanded="false" aria-controls="accordion23">Example</a>
+
+            <pre id="accordion23" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+&lt;span style={{ marginTop: '35px', padding: '5px' }} /&gt;
+
+// good
+const spanStyles = { marginTop: '35px', padding: '5px' };
+&lt;span style={spanStyles} /&gt;
+
+// good
+&lt;span style={this.getSpanStyles()} /&gt;
+// ...
+getSpanStyles () {
+    return {
+        marginTop: '35px',
+        padding: '5px'
+    };
+}
+</code>
+            </pre>
+        </li>
+        <li>
+            Don't use long string concatenation for className prop. Use <b>classnames</b> package for that.
+            <a href="#accordion24" data-toggle="collapse" aria-expanded="false" aria-controls="accordion24">Example</a>
+
+            <pre id="accordion24" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+&lt;div className={'slider ' + this.props.isVisible ? 'show' : ''} /&gt;
+
+// good
+import classNames from 'classnames';
+
+&lt;div className={this.getMainClasses()} /&gt;
+
+getMainClasses() {
+    return classNames({
+        slider: true,
+        show: this.props.isVisible
+    });
+}
 </code>
             </pre>
         </li>
