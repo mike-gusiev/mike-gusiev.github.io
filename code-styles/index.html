@@ -414,6 +414,32 @@ MyComponent2.propTypes = {}
 </code>
             </pre>
         </li>
+        <li>
+            Don't use <b>any</b>, <b>object</b>, <b>array</b> in PropTypes. Use <b>shape</b> and <b>arrayOf</b> instead!
+            <a href="#accordion19" data-toggle="collapse" aria-expanded="false" aria-controls="accordion19">Example</a>
+
+            <pre id="accordion19" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+MyComponent.propTypes = {
+    isVisible: PropTypes.any.isRequired,
+    user: PropTypes.object.isRequired,
+    values: PropTypes.array.isRequired
+};
+
+// good
+MyComponent.propTypes = {
+    isVisible: PropTypes.bool.isRequired,
+    user: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        age: PropTypes.number.isRequired,
+        email: PropTypes.string.isRequired
+    }).isRequired,
+    values: PropTypes.arrayOf(PropTypes.number).isRequired
+};
+</code>
+            </pre>
+        </li>
     </ol>
 </article>
 
