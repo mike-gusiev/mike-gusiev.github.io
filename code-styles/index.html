@@ -574,7 +574,7 @@ getMainClasses() {
         <li>
             If you want to break down your markup into small pieces - extract it to another component, or extract
             to another function which starts with <b>render</b>. <em>E.g. this.renderList(), this.renderHint(), etc.
-            </em>
+        </em>
             <a href="#accordion26" data-toggle="collapse" aria-expanded="false" aria-controls="accordion26">Example</a>
 
             <pre id="accordion26" class="collapse" role="tabpanel">
@@ -590,6 +590,74 @@ renderHint () {
         &lt;/div&gt;
     );
 }
+</code>
+            </pre>
+        </li>
+        <li>
+            If your component doesn't have state, use stateless components!
+            <a href="#accordion27" data-toggle="collapse" aria-expanded="false" aria-controls="accordion27">Example</a>
+
+            <pre id="accordion27" class="collapse" role="tabpanel">
+<code class="js">
+const MyComponent = ({ isModalVisible }) => (
+    &lt;Container&gt;
+        {isModalVisible &&
+            &lt;Modal/&gt;
+        }
+    &lt;/Container&gt;
+)
+
+MyComponent.propTypes = {
+    isModalVisible: PropTypes.bool.isRequired
+}
+
+export default MyComponent;
+</code>
+            </pre>
+        </li>
+        <li>
+            We are using 2 versions of redux-connect formating. Use one of them, depending on your project.
+            <a href="#accordion28" data-toggle="collapse" aria-expanded="false" aria-controls="accordion28">Example</a>
+
+            <pre id="accordion28" class="collapse" role="tabpanel">
+<code class="js">
+// version 1 - default react formatting + selectors caching
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { createSelector } from 'reselect'
+import { selectCommentsList, selectCommentsCount, fetchComments, addComment } from 'redux-modules/comments'
+
+const mapStateToProps = createSelector(
+    selectCommentsList,
+    selectCommentsCount,
+    (comments, commentsCount) => ({
+        comments,
+        commentsCount,
+    }),
+)
+
+const mapDispatchToProps = dispatch =>
+    bindActionCreators(
+        {
+           fetchComments,
+           addComment,
+        },
+        dispatch,
+    )
+
+export default connect(mapStateToProps, mapDispatchToProps)(CommentsListContainer)
+
+// version 2 - shorthand formatting
+import { connect } from 'react-redux';
+import { getSettings, hideAlert } from 'redux/actions/...';
+
+export default connect(
+    state => ({
+        profile: state.navBar.profile,
+        data: state.productsDB
+    }),
+    {getSettings, hideAlert}
+)(ProductsDb);
 </code>
             </pre>
         </li>
