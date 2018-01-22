@@ -661,6 +661,35 @@ export default connect(
 </code>
             </pre>
         </li>
+        <li>
+            If you're using Redux, try to use components/containers approach. Put all redux connection logic into the
+            containers, and pass all data to components via props.
+        </li>
+        <li>
+            Use selectors, to cache all data in redux state. It will help you to avoid unnecessary re-rendering.
+            <a href="#accordion29" data-toggle="collapse" aria-expanded="false" aria-controls="accordion29">Example</a>
+
+            <pre id="accordion29" class="collapse" role="tabpanel">
+<code class="js">
+import { createSelector } from 'reselect'
+
+export const selectCommentsState = state => state.comments;
+export const selectCommentsList = createSelector(selectCommentsState, state => state.commentsList);
+export const selectIsLoadingComments = createSelector(selectCommentsState, state => state.isLoading);
+
+const mapStateToProps = createSelector(
+    selectCommentsList,
+    selectIsLoadingComments,
+    (comments, selectIsLoadingComments) => ({
+        comments,
+        isLoading
+    })
+);
+
+export default connect(mapStateToProps, null)(CommentsListContainer);
+</code>
+            </pre>
+        </li>
     </ol>
 </article>
 
