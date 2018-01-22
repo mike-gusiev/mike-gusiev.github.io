@@ -671,7 +671,7 @@ export default connect(
 
             <pre id="accordion29" class="collapse" role="tabpanel">
 <code class="js">
-import { createSelector } from 'reselect'
+import { createSelector } from 'reselect';
 
 export const selectCommentsState = state => state.comments;
 export const selectCommentsList = createSelector(selectCommentsState, state => state.commentsList);
@@ -694,6 +694,37 @@ export default connect(mapStateToProps, null)(CommentsListContainer);
             Don't put everything in redux. Local state is better to keep only in component's state via <b>setState</b>
             . <em>E.g. when child component is fetching data (isLoading state), errors in some local components,
             isDropdownOpen, etc.</em>
+        </li>
+        <li>
+            We have two types of methods sorting in React. See examples.
+            <a href="#accordion30" data-toggle="collapse" aria-expanded="false" aria-controls="accordion30">Example</a>
+
+            <pre id="accordion30" class="collapse" role="tabpanel">
+<code class="js">
+/*
+    version 1 - default react methods sorting
+1. componentDidMount and other default react methods
+2. on-callback methods - <em>onButtonClick, onTextChange, etc</em>
+3. handle-methods - <em>handleClick, HandleChange, etc</em>
+4. isMethods - <em>isModalVisible, isLoading, etc</em>
+5. the rest of methods in alphabet order
+6. render-like methods - <em>renderHint, renderHeader, etc</em>
+7. render
+*/
+
+
+/*
+    version 2 - runtime sorting
+1. render
+2. render-like methods - <em>renderHint, renderHeader, etc</em>
+3. componentDidMount and other default react methods
+4. isMethods - <em>isModalVisible, isLoading, etc</em>
+5. the rest of methods in alphabet order
+6. handle-methods - <em>handleClick, HandleChange, etc</em>
+7. on-callback methods - <em>onButtonClick, onTextChange, etc</em>
+*/
+</code>
+            </pre>
         </li>
     </ol>
 </article>
