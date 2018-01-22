@@ -542,6 +542,57 @@ getMainClasses() {
 </code>
             </pre>
         </li>
+        <li>
+            Conditional rendering: if you need to render block only if some statements is true - use <b>&&</b> operator.
+            If you need if-else condition, use Conditional (Ternary) Operator - <b>?</b>. See examples to understand
+            how to format and indent condition operators.
+            <a href="#accordion25" data-toggle="collapse" aria-expanded="false" aria-controls="accordion25">Example</a>
+
+            <pre id="accordion25" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+&lt;div&gt;
+    {this.props.isModalVisible ? (
+        &lt;Modal/&gt;
+    ) : null}
+&lt;/div&gt;
+
+// good
+&lt;div&gt;
+    {this.props.isModalVisible &&
+        &lt;Modal/&gt;
+    }
+    {this.props.isLoading ? (
+        &lt;Loader/&gt;
+    ) : (
+        &lt;div&gt;content is loaded&lt;/div&gt;
+    )}
+&lt;/div&gt;
+</code>
+            </pre>
+        </li>
+        <li>
+            If you want to break down your markup into small pieces - extract it to another component, or extract
+            to another function which starts with <b>render</b>. <em>E.g. this.renderList(), this.renderHint(), etc.
+            </em>
+            <a href="#accordion26" data-toggle="collapse" aria-expanded="false" aria-controls="accordion26">Example</a>
+
+            <pre id="accordion26" class="collapse" role="tabpanel">
+<code class="js">
+&lt;div&gt;
+    {this.renderHint()}
+&lt;/div&gt;
+
+renderHint () {
+    return (
+        &lt;div className="hint"&gt;
+            Your Hint!
+        &lt;/div&gt;
+    );
+}
+</code>
+            </pre>
+        </li>
     </ol>
 </article>
 
