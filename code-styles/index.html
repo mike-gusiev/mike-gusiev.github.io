@@ -690,6 +690,11 @@ export default connect(mapStateToProps, null)(CommentsListContainer);
 </code>
             </pre>
         </li>
+        <li>
+            Don't put everything in redux. Local state is better to keep only in component's state via <b>setState</b>
+            . <em>E.g. when child component is fetching data (isLoading state), errors in some local components,
+            isDropdownOpen, etc.</em>
+        </li>
     </ol>
 </article>
 
