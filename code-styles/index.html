@@ -440,6 +440,60 @@ MyComponent.propTypes = {
 </code>
             </pre>
         </li>
+        <li>
+            Callbacks naming: use "<b>handle</b>SomethingClick" for local methods, use "<b>on</b>SomethingClick" for
+            props callbacks.
+            <a href="#accordion20" data-toggle="collapse" aria-expanded="false" aria-controls="accordion20">Example</a>
+
+            <pre id="accordion20" class="collapse" role="tabpanel">
+<code class="js">
+&lt;AvatarEditor
+    name="profile"
+    onClick={this.handleAvatarClick}
+/&gt;
+</code>
+            </pre>
+        </li>
+        <li>
+            Props indentation: short component with props should be placed into one line, for lots of props, each prop
+            should be placed into separate line. See example.
+            <a href="#accordion21" data-toggle="collapse" aria-expanded="false" aria-controls="accordion21">Example</a>
+
+            <pre id="accordion21" class="collapse" role="tabpanel">
+<code class="js">
+// small amount of props
+&lt;AvatarEditor ref={this.setEditorRef} image={this.state.image} /&gt;
+
+// a lot of props
+&lt;AvatarEditor
+    ref={this.setEditorRef}
+    image={this.state.image}
+    width={this.state.width}
+    height={this.state.height}
+    position={this.state.position}
+    borderRadius={this.state.borderRadius}
+    color={[0, 0, 0, 0.7]}
+    scale={parseFloat(this.state.scale)}
+    rotate={parseFloat(this.state.rotate)}
+    onPositionChange={this.handlePositionChange}
+/&gt;
+</code>
+            </pre>
+        </li>
+        <li>
+            Qutes in props: use double quotes for all string props without curly braces. In curly braces, use single
+            qoutes. See example.
+            <a href="#accordion22" data-toggle="collapse" aria-expanded="false" aria-controls="accordion22">Example</a>
+
+            <pre id="accordion22" class="collapse" role="tabpanel">
+<code class="js">
+&lt;MyComponent
+    name="best component"
+    version={'version #' + item.version}
+/&gt;
+</code>
+            </pre>
+        </li>
     </ol>
 </article>
 
