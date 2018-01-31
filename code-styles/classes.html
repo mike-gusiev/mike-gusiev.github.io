@@ -32,8 +32,72 @@
 <article>
     <ol>
         <li>
-            Whenever you see a bad code, you have to refactor it! You should always leave a better code, then it
-            was before you.
+            Class names should start with an upper case letter and use camel case notation. (Footer, WeatherHub,
+            BaseModule)
+        </li>
+        <li>
+            Each function should be separated by empty line.
+        </li>
+        <li>
+            Don't use reserved words as keys. It won't work in IE8. Use readable synonyms in place of reserved words.
+            <a href="#accordion6" data-toggle="collapse" aria-expanded="false" aria-controls="accordion6">Example</a>
+            <pre id="accordion6" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+const superman = {
+    class: 'alien',
+    default: { clark: 'kent' },
+    private: true
+};
+    
+// bad
+const superman = {
+    klass: 'alien'
+};
+    
+// good
+const superman = {
+    defaults: { clark: 'kent' },
+    hidden: true,
+    type: 'alien'
+};
+</code>
+            </pre>
+        </li>
+        <li>
+            When saving a reference to this use self.
+            <a href="#accordion7" data-toggle="collapse" aria-expanded="false" aria-controls="accordion7">Example</a>
+            <pre id="accordion7" class="collapse" role="tabpanel">
+<code class="js">
+//bad
+const _this = this;
+    
+//bad
+const that = this;
+    
+//good
+const self = this;
+</code>
+            </pre>
+        </li>
+        <li>
+            The names of model properties should not contains spaces and quotes
+            <a href="#accordion8" data-toggle="collapse" aria-expanded="false" aria-controls="accordion8">Example</a>
+            <pre id="accordion8" class="collapse" role="tabpanel">
+<code class="js">
+//bad
+defaults: {
+    'first name': 'Bob',
+    'birth date': new Date()
+}
+
+//good
+defaults: {
+    firstName: 'Bob',
+    birthDate: new Date()
+}
+</code>
+            </pre>
         </li>
     </ol>
 </article>

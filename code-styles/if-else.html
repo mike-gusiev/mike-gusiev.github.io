@@ -32,8 +32,169 @@
 <article>
     <ol>
         <li>
-            Whenever you see a bad code, you have to refactor it! You should always leave a better code, then it
-            was before you.
+            Expressions should not be too complex. Maximum number of allowed conditional operators in an expression - 3!
+            <a href="#accordion1" data-toggle="collapse" aria-expanded="false" aria-controls="accordion1">Example</a>
+            <pre id="accordion1" class="collapse" role="tabpanel">
+<code class="js">
+//bad
+if (x === 3 && a === 3 || b === 2 || c === 6) {
+    // ...
+}
+    
+//good
+if (x === 3 && a === 3 || b === 2) {
+    // ...
+}
+</code>
+            </pre>
+        </li>
+        <li>
+            Literal boolean values should not be used in condition expressions
+            <a href="#accordion2" data-toggle="collapse" aria-expanded="false" aria-controls="accordion2">Example</a>
+            <pre id="accordion2" class="collapse" role="tabpanel">
+<code class="js">
+//bad
+if (booleanVariable === true) { 
+    //...
+}
+if (booleanVariable !== true) { 
+    //...
+}
+if (booleanVariable || false) { 
+    //...
+}
+doSomething(!false);
+    
+    
+//good
+if (booleanVariable) { 
+    //...
+}
+if (!booleanVariable) {
+    //...
+}
+if (booleanVariable) { 
+    //...
+}
+doSomething(true);
+</code>
+            </pre>
+        </li>
+        <li>
+            Control flow statements "if", "for", "while", "switch" and "try" should not be nested too deeply.
+            Maximum nesting level - 3.
+        </li>
+        <li>
+            If you're using multi-line blocks with if and else, put else on the same line as your if block's closing
+            brace.
+            <a href="#accordion4" data-toggle="collapse" aria-expanded="false" aria-controls="accordion4">Example</a>
+            <pre id="accordion4" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+if (test) {
+    thing1();
+    thing2();
+}
+else {
+    thing3();
+}
+    
+// good
+if (test) {
+    thing1();
+    thing2();
+} else {
+    thing3();
+}
+</code>
+            </pre>
+        </li>
+        <li>
+            "===" and "!==" should be used instead of "==" and "!="
+        </li>
+        <li>
+            Use shortcuts.
+            <a href="#accordion5" data-toggle="collapse" aria-expanded="false" aria-controls="accordion5">Example</a>
+            <pre id="accordion5" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+if (name !== '') {
+    // ...stuff...
+}
+    
+// good
+if (name) {
+    // ...stuff...
+}
+    
+// bad
+if (collection.length > 0) {
+    // ...stuff...
+}
+    
+// good
+if (collection.length) {
+    // ...stuff...
+}
+</code>
+            </pre>
+        </li>
+        <li>
+            "switch" statements should have at least 3 "case" clauses. Otherwise, use "if" statement.
+        </li>
+        <li>
+            "switch" statements should end with a "default" clause 
+        </li>
+        <li>
+            Related "if/else if" statements and "cases" in a "switch" should not have the same condition
+            <a href="#accordion6" data-toggle="collapse" aria-expanded="false" aria-controls="accordion6">Example</a>
+            <pre id="accordion6" class="collapse" role="tabpanel">
+<code class="js">
+//bad
+if (param === 1) {
+    openWindow();
+} else if (param === 2) {
+    closeWindow();
+} else if (param === 1) {
+    moveWindowToTheBackground();
+}
+</code>
+            </pre>
+        </li>
+        <li>                   
+            Two branches in the same conditional structure should not have exactly the same implementation
+            <a href="#accordion7" data-toggle="collapse" aria-expanded="false" aria-controls="accordion7">Example</a>
+            <pre id="accordion7" class="collapse" role="tabpanel">
+<code class="js">
+//bad
+if (param === 1) {
+    doSomething();
+} else if (param === 2) {
+    closeWindow();
+} else if (param === 3) {
+    doSomething();
+}
+    
+//bad
+switch (i) {
+    case 1: {
+        doSomething();
+        break;
+    }
+    case 2: {
+        doSomethingDifferent();
+        break;
+    }
+    case 3: {
+        doSomething();
+        break;
+    }
+    default: {
+        doTheRest();
+    }
+}
+</code>
+            </pre>
         </li>
     </ol>
 </article>

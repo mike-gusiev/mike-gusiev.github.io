@@ -35,6 +35,216 @@
             Variables should start with a lower case letter and proceed with camel case notation.
             (eg: someAmazingVariable)
         </li>
+        <li>
+            Avoid single letter names. Be descriptive with your naming of variables and functions.
+        </li>
+        <li>
+            Don't use "future reserved words" as name of the variables and function
+            <a href="#accordion1" data-toggle="collapse" aria-expanded="false" aria-controls="accordion1">Example</a>
+            <pre id="accordion1" class="collapse" role="tabpanel">
+<code class="js">
+await, class, const, enum, exports, extends, implements, import, interface, let, package, private, protected, public,
+static, super, yield
+</code>
+            </pre>
+        </li>
+        <li>
+            Variables and functions should not be re-declared
+            <a href="#accordion2" data-toggle="collapse" aria-expanded="false" aria-controls="accordion2">Example</a>
+            <pre id="accordion2" class="collapse" role="tabpanel">
+<code class="js">
+//bad
+let a = 3;
+...
+let a = 10;
+    
+//good
+let a = 3;
+...
+let b = 10;
+</code>
+            </pre>
+        </li>
+        <li>
+            Variables should not be shadowed
+            <a href="#accordion3" data-toggle="collapse" aria-expanded="false" aria-controls="accordion3">Example</a>
+            <pre id="accordion3" class="collapse" role="tabpanel">
+<code class="js">
+//bad
+let a = 3;
+if (arr.length) {
+    let a = 10;
+}
+    
+//good
+let a = 3;
+if (arr.length) {
+    let b = 10;
+}
+</code>
+            </pre>
+        </li>
+        <li>
+            Use the literal syntax for object and array creation
+            <a href="#accordion4" data-toggle="collapse" aria-expanded="false" aria-controls="accordion4">Example</a>
+            <pre id="accordion4" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+const obj = new Object();
+const arr = new Array();
+    
+// good
+const obj = {};
+const arr = [];
+</code>
+            </pre>
+        </li>
+        <li>
+            Use single quotes for strings
+            <a href="#accordion5" data-toggle="collapse" aria-expanded="false" aria-controls="accordion5">Example</a>
+            <pre id="accordion5" class="collapse" role="tabpanel">
+<code class="js">
+//bad
+const str = "This is string";
+    
+//good
+const str = 'This is string';
+</code>
+            </pre>
+        </li>
+        <li>
+            Variables should always be declared before they are used
+            <a href="#accordion6" data-toggle="collapse" aria-expanded="false" aria-controls="accordion6">Example</a>
+            <pre id="accordion6" class="collapse" role="tabpanel">
+<code class="js">
+//bad
+$block = this.$element.find('.block');
+    
+//good
+const $block = this.$element.find('.block');
+    
+//good
+let $block;
+...
+$block = this.$element.find('.block');
+</code>
+            </pre>
+        </li>
+        <li>
+            Declare unassigned variables last
+            <a href="#accordion7" data-toggle="collapse" aria-expanded="false" aria-controls="accordion7">Example</a>
+            <pre id="accordion7" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+let i;
+let items = getItems();
+let dragonball;
+let goSportsTeam = true;
+let len;
+    
+// good
+let items = getItems();
+let goSportsTeam = true;
+let dragonball;
+let length;
+let i;
+</code>
+            </pre>
+        </li>
+        <li>
+            All calculated values which assigned to a variables should be used. Unused variables (Dead Stores)
+            should be removed
+            <a href="#accordion8" data-toggle="collapse" aria-expanded="false" aria-controls="accordion8">Example</a>
+            <pre id="accordion8" class="collapse" role="tabpanel">
+<code class="js">
+//bad
+getData: () => {
+    const items = this.container.find('.item');
+    const data = this.getValues();
+    return data;
+}
+    
+//good
+getData: () => {
+    const data = this.getValues();
+    return data;
+}
+</code>
+            </pre>
+        </li>
+        <li>
+            Use of "var" is forbidden. Use "let" or "const" instead.
+            <a href="#accordion9" data-toggle="collapse" aria-expanded="false" aria-controls="accordion9">Example</a>
+            <pre id="accordion9" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+var snack = 'Meow Mix';
+function getFood(food) {
+    if (food) {
+        var snack = 'Friskies';
+        return snack;
+    }
+    return snack;
+}
+console.log(getFood(false)); // undefined
+    
+// good. it allows to avoid hoisting
+let snack = 'Meow Mix';
+function getFood(food) {
+    if (food) {
+        let snack = 'Friskies';
+        return snack;
+    }
+    return snack;
+}
+console.log(getFood(false)); // 'Meow Mix'
+</code>
+            </pre>
+        </li>
+        <li>
+            "const" must be used for fixed variables
+            <a href="#accordion10" data-toggle="collapse" aria-expanded="false" aria-controls="accordion10">Example</a>
+            <pre id="accordion10" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+var str = 'Hello world!';
+console.log(str);
+    
+// bad
+let str = 'Hello world!';
+console.log(str);
+    
+// good. immutable variables must always be constants!
+const str = 'Hello world!';
+console.log(str);
+</code>
+            </pre>
+        </li>
+        <li>
+            Use destructuring instead of direct assignment
+            <a href="#accordion11" data-toggle="collapse" aria-expanded="false" aria-controls="accordion11">Example</a>
+            <pre id="accordion11" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+var arr = [1, 2, 3];
+var a = arr[0];
+var b = arr[1];
+var c = arr[2];
+    
+// good
+let [a, b, c] = [1, 2, 3];
+    
+// bad
+var luke = { occupation: 'jedi', father: 'anakin' };
+var occupation = luke.occupation; // 'jedi'
+var father = luke.father; // 'anakin'
+    
+// good
+let luke = { occupation: 'jedi', father: 'anakin' };
+let {occupation, father} = luke;
+</code>
+            </pre>
+        </li>
     </ol>
 </article>
 

@@ -32,9 +32,91 @@
 <article>
     <ol>
         <li>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus et eum facilis inventore itaque
-            laboriosam nesciunt numquam sequi. Aliquam autem beatae dicta dignissimos error eum excepturi maxime nostrum
-            vel voluptates!
+            Function names should start with a lower case letter and use camel case notation. (eg: getData, render,
+            update, initProperties)
+        </li>
+        <li>
+            Function names exclude callbacks and event handlers should be actions (eg: getData, render, update,
+            initProperties)
+        </li>
+        <li>
+            Function arguments should be separated by spaces
+            <a href="#accordion1" data-toggle="collapse" aria-expanded="false" aria-controls="accordion1">Example</a>
+            <pre id="accordion1" class="collapse" role="tabpanel">
+<code class="js">
+//bad
+fun: (a,b,c) => {
+    //...
+}
+    
+//good
+fun: (a, b, c) => {
+    //...
+}
+</code>
+            </pre>
+        </li>
+        <li>
+            Assignments should not be made from within sub-expressions
+            <a href="#accordion2" data-toggle="collapse" aria-expanded="false" aria-controls="accordion2">Example</a>
+            <pre id="accordion2" class="collapse" role="tabpanel">
+<code class="js">
+//bad
+doSomething(i = 42);
+    
+//good
+let i = 42;
+doSomething(i);
+</code>
+            </pre>
+        </li>
+        <li>
+            Functions should not have too many lines. Maximum authorized lines in a function - 100!
+        </li>
+        <li>
+            Functions should not have too many parameters. The maximum authorized number of parameters - 7!
+        </li>
+        <li>
+            Function calls should not pass extra arguments
+            <a href="#accordion3" data-toggle="collapse" aria-expanded="false" aria-controls="accordion3">Example</a>
+            <pre id="accordion3" class="collapse" role="tabpanel">
+<code class="js">
+//bad
+const say = (a, b) => {
+    print(a + ' ' + b);
+}
+say('hello', 'world', '!');
+    
+//good
+const say = (a, b) => {
+    print(a + ' ' + b);
+}
+say('hello', 'world');
+</code>
+            </pre>
+        </li>
+        <li>
+            Results of operations on strings should not be ignored. Every variable should be used or returned as result.
+            <a href="#accordion5" data-toggle="collapse" aria-expanded="false" aria-controls="accordion5">Example</a>
+            <pre id="accordion5" class="collapse" role="tabpanel">
+<code class="js">
+//bad
+fun: () => {
+    let str = "...";
+    str.toUpperCase();
+}
+    
+//good
+fun: () => {
+    let str = '...';
+    str = str.toUpperCase();
+    return str;
+}
+</code>
+            </pre>
+        </li>
+        <li>
+            Each function should be separated by empty line.
         </li>
     </ol>
 </article>
