@@ -196,6 +196,25 @@ switch (i) {
 </code>
             </pre>
         </li>
+        <li>
+            Collapsible "if" statements should be merged
+            <a href="#accordion8" data-toggle="collapse" aria-expanded="false" aria-controls="accordion8">Example</a>
+            <pre id="accordion8" class="collapse" role="tabpanel">
+<code class="js">
+//bad
+if (x !== undefined) {
+    if (x === 2) {
+        // ...
+    }
+}
+
+//good
+if (x !== undefined && x === 2) {
+    // ...
+}
+</code>
+            </pre>
+        </li>
     </ol>
 </article>
 

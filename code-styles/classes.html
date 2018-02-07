@@ -99,6 +99,114 @@ defaults: {
 </code>
             </pre>
         </li>
+        <li>
+            Use ES6 export instead of CommonJS syntax
+            <a href="#accordion9" data-toggle="collapse" aria-expanded="false" aria-controls="accordion9">Example</a>
+            <pre id="accordion9" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+module.exports = 1;
+module.exports = { foo: 'bar' };
+module.exports = ['foo', 'bar'];
+module.exports = function bar () {};
+
+// good
+export let name = 'David';
+export let age  = 25;
+
+// good
+const sumTwo = (a, b) => a + b;
+const sumThree = (a, b, c) => a + b + c;
+export { sumTwo, sumThree };
+</code>
+            </pre>
+        </li>
+        <li>
+            Use ES6 import syntax
+            <a href="#accordion10" data-toggle="collapse" aria-expanded="false" aria-controls="accordion10">Example</a>
+            <pre id="accordion10" class="collapse" role="tabpanel">
+<code class="js">
+import 'underscore';
+
+import { sumTwo, sumThree } from 'math/addition';
+
+import {
+    sumTwo as addTwoNumbers,
+    sumThree as sumThreeNumbers
+} from 'math/addition';
+
+import * as util from 'math/addition';
+</code>
+            </pre>
+        </li>
+        <li>
+            Class declaration syntax
+            <a href="#accordion11" data-toggle="collapse" aria-expanded="false" aria-controls="accordion11">Example</a>
+            <pre id="accordion11" class="collapse" role="tabpanel">
+<code class="js">
+// basic class syntax
+class Person {
+    constructor(name, age, gender) {
+        this.name   = name;
+        this.age    = age;
+        this.gender = gender;
+    }
+
+    incrementAge() {
+      this.age += 1;
+    }
+}
+
+// class inheritance
+class Personal extends Person {
+    constructor(name, age, gender, occupation, hobby) {
+        super(name, age, gender);
+        this.occupation = occupation;
+        this.hobby = hobby;
+    }
+
+    incrementAge() {
+        super.incrementAge();
+        this.age += 20;
+        console.log(this.age);
+    }
+}
+
+// objects creation
+var p = new Person('Mike', 25, 'male');
+var p2 = new Personal('Mike', 25, 'male', 'js developer', 'arduino');
+</code>
+            </pre>
+        </li>
+        <li>
+            Use Getter/Setter functions for object's hidden assignments
+            <a href="#accordion12" data-toggle="collapse" aria-expanded="false" aria-controls="accordion12">Example</a>
+            <pre id="accordion12" class="collapse" role="tabpanel">
+<code class="js">
+// if you need dynamic calculation of the variable
+var person = {
+
+    firstName: 'James',
+    lastName: 'Bond',
+
+    get fullName() {
+        return this.firstName + ' ' + this.lastName;
+    },
+
+    set fullName (name) {
+        var words = name.toString().split(' ');
+        this.firstName = words[0] || '';
+        this.lastName = words[1] || '';
+    }
+
+}
+
+console.log(person.fullName); // James Bond
+person.fullName = 'Bond 007';
+console.log(person.fullName); // Bond 007
+</code>
+            </pre>
+        </li>
     </ol>
 </article>
 

@@ -118,6 +118,134 @@ fun: () => {
         <li>
             Each function should be separated by empty line.
         </li>
+        <li>
+            IIFEs are forbidden. Use blocks instead
+            <a href="#accordion6" data-toggle="collapse" aria-expanded="false" aria-controls="accordion6">Example</a>
+            <pre id="accordion6" class="collapse" role="tabpanel">
+<code class="js">
+// bad. Immediately Invoked Function Expressions are obsolete!
+(function () {
+    var food = 'Meow Mix';
+    // ...
+}());
+
+// good
+{
+    let food = 'Meow Mix';
+    // ...
+}
+</code>
+            </pre>
+        </li>
+        <li>
+            Use arrow functions to preserve "this" value
+            <a href="#accordion7" data-toggle="collapse" aria-expanded="false" aria-controls="accordion7">Example</a>
+            <pre id="accordion7" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+setTimeout(function () {
+    console.log(this.value);
+}.bind(this), 1000);
+
+// bad
+var that = this;
+setTimeout(function () {
+    console.log(that.value);
+}, 1000);
+
+// good
+setTimeout(() => {
+    console.log(this.value);
+}, 1000);
+</code>
+            </pre>
+        </li>
+        <li>
+            Use promises instead of nested code
+            <a href="#accordion8" data-toggle="collapse" aria-expanded="false" aria-controls="accordion8">Example</a>
+            <pre id="accordion8" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+func1(function (value1) {
+    func2(value1, function (value2) {
+        func3(value2, function (value3) {
+            func4(value3, function (value4) {
+                func5(value4, function (value5) {
+                    // Do something with value 5
+                });
+            });
+        });
+    });
+});
+
+// good
+func1(value1)
+    .then(func2)
+    .then(func3)
+    .then(func4)
+    .then(func5, value5 => {
+        // Do something with value 5
+    });
+</code>
+            </pre>
+        </li>
+        <li>
+            Use function default parameters instead of chain assignments
+            <a href="#accordion9" data-toggle="collapse" aria-expanded="false" aria-controls="accordion9">Example</a>
+            <pre id="accordion9" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+function addTwoNumbers(x, y) {
+    x = x || 0;
+    y = y || 0;
+    return x + y;
+}
+
+// good
+const addTwoNumbers = (x = 0, y = 0) => x + y;
+</code>
+            </pre>
+        </li>
+        <li>
+            Use rest operator "..." instead of "arguments"
+            <a href="#accordion10" data-toggle="collapse" aria-expanded="false" aria-controls="accordion10">Example</a>
+            <pre id="accordion10" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+function logArguments(par1) {
+    console.log(par1);
+    for (var i=1; i < arguments.length; i++) {
+        console.log(arguments[i]);
+    }
+}
+
+// good
+const logArguments = (par1, ...args) => {
+    console.log(par1);
+    for (let arg of args) {
+        console.log(arg);
+    }
+};
+</code>
+            </pre>
+        </li>
+        <li>
+            Use spread operator whenever it possible
+            <a href="#accordion11" data-toggle="collapse" aria-expanded="false" aria-controls="accordion11">Example</a>
+            <pre id="accordion11" class="collapse" role="tabpanel">
+<code class="js">
+// bad. In ES5, we could find the max of values in an array by using the apply method on Math.max like this:
+Math.max.apply(null, [-1, 100, 9001, -32]); // 9001
+
+// good. In ES6, we can now use the spread operator to pass an array of values to be used as parameters to a function:
+Math.max(...[-1, 100, 9001, -32]); // 9001
+
+// good. array concatenation
+let cities = ['San Francisco', 'Los Angeles'];
+let places = ['Miami', ...cities, 'Chicago']; // ['Miami', 'San Francisco', 'Los Angeles', 'Chicago']
+</code>
+            </pre>
+        </li>
     </ol>
 </article>
 

@@ -245,6 +245,89 @@ let {occupation, father} = luke;
 </code>
             </pre>
         </li>
+        <li>
+            Use ES6 built-in data-structures
+            <a href="#accordion12" data-toggle="collapse" aria-expanded="false" aria-controls="accordion12">Example</a>
+            <pre id="accordion12" class="collapse" role="tabpanel">
+<code class="js">
+// Sets
+const s = new Set();
+s.add("hello").add("goodbye").add("hello");
+s.size === 2;
+s.has("hello") === true;
+
+// Maps
+const m = new Map();
+m.set("hello", 42);
+m.set(s, 34);
+m.get(s) == 34;
+
+// Weak Maps
+const wm = new WeakMap();
+wm.set(s, { extra: 42 });
+wm.size === undefined
+
+// Weak Sets
+const ws = new WeakSet();
+ws.add({ data: 42 });
+</code>
+            </pre>
+        </li>
+        <li>
+            Use template Literals for complex strings
+            <a href="#accordion13" data-toggle="collapse" aria-expanded="false" aria-controls="accordion13">Example</a>
+            <pre id="accordion13" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+var text = "This string contains \"double quotes\" which are escaped.";
+var text2 = 'My cat is named ' + name + ' and is ' + age + ' years old.';
+
+// good
+let text = `This string contains "double quotes" which don't need to be escaped anymore.`;
+let text2 = `My cat is named ${name} and is ${age} years old.`;
+
+let today = new Date();
+let text3 = `The time and date is ${today.toLocaleString()}`;
+</code>
+            </pre>
+        </li>
+        <li>
+            Use "String.includes" instead of "String.indexOf"
+            <a href="#accordion14" data-toggle="collapse" aria-expanded="false" aria-controls="accordion14">Example</a>
+            <pre id="accordion14" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+var string = 'food';
+var substring = 'foo';
+console.log(string.indexOf(substring) > -1);
+
+// good
+const string = 'food';
+const substring = 'foo';
+console.log(string.includes(substring));
+</code>
+            </pre>
+        </li>
+        <li>
+            Use "String.repeat"
+            <a href="#accordion15" data-toggle="collapse" aria-expanded="false" aria-controls="accordion15">Example</a>
+            <pre id="accordion15" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+function repeat(string, count) {
+    var strings = [];
+    while(strings.length < count) {
+        strings.push(string);
+    }
+    return strings.join('');
+}
+var text = repeat('meow', 3);
+
+// good
+let text = 'meow'.repeat(3);
+</code>
+            </pre>
+        </li>
     </ol>
 </article>
 
