@@ -389,6 +389,52 @@ const myObservable$ = this.store$('user1');
 </code>
             </pre>
         </li>
+        <li>
+            Use <b>Augury</b> Chrome extension to debug your angular code.
+        </li>
+        <li>
+            Try to avoid of using <b>ngDoCheck</b> and <b>ngOnChanges</b> whenever it possible. It slows your app a lot!
+        </li>
+        <li>
+            Don't put any logic inside your html-templates. It should be inside your ts-components.
+        </li>
+        <li>
+            Don't put your logic inside constructors. Constructor should call for another methods, not to operate with
+            logic.
+            <a href="#accordion32" data-toggle="collapse" aria-expanded="false" aria-controls="accordion32">Example</a>
+
+            <pre id="accordion32" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+export class MyComponent {
+
+    constructor(private appService: AppService) {
+        if (this.form.valid) {
+            this.resetErrors();
+            this.showApp(appService);
+        }
+    }
+
+}
+
+// good
+export class MyComponent {
+
+    constructor(private appService: AppService) {
+        this.validateFrom(appService);
+    }
+
+    private validateFrom(appService: AppService): null {
+        if (this.form.valid) {
+            this.resetErrors();
+            this.showApp(appService);
+        }
+    }
+
+}
+</code>
+            </pre>
+        </li>
     </ol>
     <h3>React</h3>
     <ol>
