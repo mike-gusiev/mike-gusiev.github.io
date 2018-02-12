@@ -39,6 +39,14 @@
             Avoid single letter names. Be descriptive with your naming of variables and functions.
         </li>
         <li>
+            <b>const</b> should have priority over <b>let</b>. Always declare your variable with const, and when it
+            starts to mutate - rename to let. Use const even for mutated objects, unless it were re-declared.
+        </li>
+        <li>
+            Don't create too much variables, try to avoid new variables whenever it possible. You can also extract part
+            of your code to a new variable when you need to fit your line into 120 symbols.
+        </li>
+        <li>
             Don't use "future reserved words" as name of the variables and function
             <a href="#accordion1" data-toggle="collapse" aria-expanded="false" aria-controls="accordion1">Example</a>
             <pre id="accordion1" class="collapse" role="tabpanel">
@@ -100,7 +108,7 @@ const arr = [];
             </pre>
         </li>
         <li>
-            Use single quotes for strings
+            Use single quotes for strings or string templates
             <a href="#accordion5" data-toggle="collapse" aria-expanded="false" aria-controls="accordion5">Example</a>
             <pre id="accordion5" class="collapse" role="tabpanel">
 <code class="js">
@@ -109,6 +117,7 @@ const str = "This is string";
     
 //good
 const str = 'This is string';
+const str2 = `${str}. Second string`;
 </code>
             </pre>
         </li>
