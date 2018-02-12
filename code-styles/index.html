@@ -435,6 +435,41 @@ export class MyComponent {
 </code>
             </pre>
         </li>
+        <li>
+            Always unsubscribe from Observable in ngOnDestroy. Otherwise, the consequences may be very bad. It is
+            almost impossible to find a problem afterwards.
+        </li>
+        <li>
+            Do not use private properties in your html templates. Otherwise, you might have problems with AOT compiling.
+            <a href="#accordion33" data-toggle="collapse" aria-expanded="false" aria-controls="accordion33">Example</a>
+
+            <pre id="accordion33" class="collapse" role="tabpanel">
+<code class="js">
+// in progress
+</code>
+            </pre>
+        </li>
+        <li>
+            If you need to <b>addEventListener</b>, use <b>Observable.fromEvent</b>. It works the same.
+            <a href="#accordion34" data-toggle="collapse" aria-expanded="false" aria-controls="accordion34">Example</a>
+
+            <pre id="accordion34" class="collapse" role="tabpanel">
+<code class="js">
+// in progress
+</code>
+            </pre>
+        </li>
+        <li>
+            Build your structure with smart and dumb components. Dumb component should use onPush strategy and
+            Input set.
+            <a href="#accordion35" data-toggle="collapse" aria-expanded="false" aria-controls="accordion35">Example</a>
+
+            <pre id="accordion35" class="collapse" role="tabpanel">
+<code class="js">
+// in progress
+</code>
+            </pre>
+        </li>
     </ol>
     <h3>React</h3>
     <ol>
