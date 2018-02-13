@@ -10,85 +10,128 @@
     <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
-
-<nav class="navbar fixed-top navbar-light bg-light">
-    <a class="navbar-brand" href="javascript:void(0);">Conditional Blocks</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"
-    >
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-            <a class="nav-item nav-link" href="./">Best practices</a>
-            <a class="nav-item nav-link" href="./spaces.html">Spaces and code formating</a>
-            <a class="nav-item nav-link" href="./vars.html">Variables Declarations</a>
-            <a class="nav-item nav-link" href="./funcs.html">Functions Declarations</a>
-            <a class="nav-item nav-link" href="./classes.html">Classes and Modules</a>
+<div class="wrapper">
+    <nav id="sidebar" class="active">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header">
+            <h3>Conditional Blocks</h3>
+            <strong>CB</strong>
         </div>
-    </div>
-</nav>
 
-<article>
-    <ol>
-        <li>
-            Expressions should not be too complex. Maximum number of allowed conditional operators in an expression - 3!
-            <a href="#accordion1" data-toggle="collapse" aria-expanded="false" aria-controls="accordion1">Example</a>
-            <pre id="accordion1" class="collapse" role="tabpanel">
+        <!-- Sidebar Links -->
+        <ul class="list-unstyled components">
+            <li class="active">
+                <a href="index.html">
+                    <span class="categoryPreview">1</span>
+                    <p>Best Practices</p>
+                </a>
+            </li>
+            <li class="active">
+                <a href="spaces.html">
+                    <span class="categoryPreview">2</span>
+                    <p>Spaces and code formating</p>
+                </a>
+            </li>
+            <li>
+                <a href="vars.html">
+                    <span class="categoryPreview">3</span>
+                    <p>Variables Declarations</p>
+                </a>
+            </li>
+            <li>
+                <a href="funcs.html">
+                    <span class="categoryPreview">4</span>
+                    <p>Functions Declarations</p>
+                </a>
+            </li>
+            <li>
+                <a href="if-else.html">
+                    <span class="categoryPreview">5</span>
+                    <p>Conditional Blocks</p>
+                </a>
+            </li>
+            <li>
+                <a href="classes.html">
+                    <span class="categoryPreview">6</span>
+                    <p>Classes and Modules</p>
+                </a>
+            </li>
+        </ul>
+        <button type="button" id="sidebarCollapse">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+    <div id="content">
+        <article>
+            <h3>Conditional Blocks</h3>
+            <ol>
+                <li>
+                    Expressions should not be too complex. Maximum number of allowed conditional operators in an
+                    expression - 3!
+                    <a href="#accordion1" data-toggle="collapse" aria-expanded="false" aria-controls="accordion1">
+                        Example
+                    </a>
+                    <pre id="accordion1" class="collapse" role="tabpanel">
 <code class="js">
 //bad
 if (x === 3 && a === 3 || b === 2 || c === 6) {
     // ...
 }
-    
+
 //good
 if (x === 3 && a === 3 || b === 2) {
     // ...
 }
 </code>
             </pre>
-        </li>
-        <li>
-            Literal boolean values should not be used in condition expressions
-            <a href="#accordion2" data-toggle="collapse" aria-expanded="false" aria-controls="accordion2">Example</a>
-            <pre id="accordion2" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    Literal boolean values should not be used in condition expressions
+                    <a href="#accordion2" data-toggle="collapse" aria-expanded="false" aria-controls="accordion2">
+                        Example
+                    </a>
+                    <pre id="accordion2" class="collapse" role="tabpanel">
 <code class="js">
 //bad
-if (booleanVariable === true) { 
+if (booleanVariable === true) {
     //...
 }
-if (booleanVariable !== true) { 
+if (booleanVariable !== true) {
     //...
 }
-if (booleanVariable || false) { 
+if (booleanVariable || false) {
     //...
 }
 doSomething(!false);
-    
-    
+
+
 //good
-if (booleanVariable) { 
+if (booleanVariable) {
     //...
 }
 if (!booleanVariable) {
     //...
 }
-if (booleanVariable) { 
+if (booleanVariable) {
     //...
 }
 doSomething(true);
 </code>
             </pre>
-        </li>
-        <li>
-            Control flow statements "if", "for", "while", "switch" and "try" should not be nested too deeply.
-            Maximum nesting level - 3.
-        </li>
-        <li>
-            If you're using multi-line blocks with if and else, put else on the same line as your if block's closing
-            brace.
-            <a href="#accordion4" data-toggle="collapse" aria-expanded="false" aria-controls="accordion4">Example</a>
-            <pre id="accordion4" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    Control flow statements "if", "for", "while", "switch" and "try" should not be nested too deeply.
+                    Maximum nesting level - 3.
+                </li>
+                <li>
+                    If you're using multi-line blocks with if and else, put else on the same line as your if block's
+                    closing brace.
+                    <a href="#accordion4" data-toggle="collapse" aria-expanded="false" aria-controls="accordion4">
+                        Example
+                    </a>
+                    <pre id="accordion4" class="collapse" role="tabpanel">
 <code class="js">
 // bad
 if (test) {
@@ -98,7 +141,7 @@ if (test) {
 else {
     thing3();
 }
-    
+
 // good
 if (test) {
     thing1();
@@ -108,47 +151,51 @@ if (test) {
 }
 </code>
             </pre>
-        </li>
-        <li>
-            "===" and "!==" should be used instead of "==" and "!="
-        </li>
-        <li>
-            Use shortcuts.
-            <a href="#accordion5" data-toggle="collapse" aria-expanded="false" aria-controls="accordion5">Example</a>
-            <pre id="accordion5" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    "===" and "!==" should be used instead of "==" and "!="
+                </li>
+                <li>
+                    Use shortcuts.
+                    <a href="#accordion5" data-toggle="collapse" aria-expanded="false" aria-controls="accordion5">
+                        Example
+                    </a>
+                    <pre id="accordion5" class="collapse" role="tabpanel">
 <code class="js">
 // bad
 if (name !== '') {
     // ...stuff...
 }
-    
+
 // good
 if (name) {
     // ...stuff...
 }
-    
+
 // bad
 if (collection.length > 0) {
     // ...stuff...
 }
-    
+
 // good
 if (collection.length) {
     // ...stuff...
 }
 </code>
             </pre>
-        </li>
-        <li>
-            "switch" statements should have at least 3 "case" clauses. Otherwise, use "if" statement.
-        </li>
-        <li>
-            "switch" statements should end with a "default" clause 
-        </li>
-        <li>
-            Related "if/else if" statements and "cases" in a "switch" should not have the same condition
-            <a href="#accordion6" data-toggle="collapse" aria-expanded="false" aria-controls="accordion6">Example</a>
-            <pre id="accordion6" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    "switch" statements should have at least 3 "case" clauses. Otherwise, use "if" statement.
+                </li>
+                <li>
+                    "switch" statements should end with a "default" clause
+                </li>
+                <li>
+                    Related "if/else if" statements and "cases" in a "switch" should not have the same condition
+                    <a href="#accordion6" data-toggle="collapse" aria-expanded="false" aria-controls="accordion6">
+                        Example
+                    </a>
+                    <pre id="accordion6" class="collapse" role="tabpanel">
 <code class="js">
 //bad
 if (param === 1) {
@@ -160,11 +207,13 @@ if (param === 1) {
 }
 </code>
             </pre>
-        </li>
-        <li>                   
-            Two branches in the same conditional structure should not have exactly the same implementation
-            <a href="#accordion7" data-toggle="collapse" aria-expanded="false" aria-controls="accordion7">Example</a>
-            <pre id="accordion7" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    Two branches in the same conditional structure should not have exactly the same implementation
+                    <a href="#accordion7" data-toggle="collapse" aria-expanded="false" aria-controls="accordion7">
+                        Example
+                    </a>
+                    <pre id="accordion7" class="collapse" role="tabpanel">
 <code class="js">
 //bad
 if (param === 1) {
@@ -174,7 +223,7 @@ if (param === 1) {
 } else if (param === 3) {
     doSomething();
 }
-    
+
 //bad
 switch (i) {
     case 1: {
@@ -195,11 +244,13 @@ switch (i) {
 }
 </code>
             </pre>
-        </li>
-        <li>
-            Collapsible "if" statements should be merged
-            <a href="#accordion8" data-toggle="collapse" aria-expanded="false" aria-controls="accordion8">Example</a>
-            <pre id="accordion8" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    Collapsible "if" statements should be merged
+                    <a href="#accordion8" data-toggle="collapse" aria-expanded="false" aria-controls="accordion8">
+                        Example
+                    </a>
+                    <pre id="accordion8" class="collapse" role="tabpanel">
 <code class="js">
 //bad
 if (x !== undefined) {
@@ -214,14 +265,24 @@ if (x !== undefined && x === 2) {
 }
 </code>
             </pre>
-        </li>
-    </ol>
-</article>
-
+                </li>
+            </ol>
+        </article>
+    </div>
+</div>
 <script src="./vendor/jquery-3.2.1.slim.min.js"></script>
 <script src="./vendor/bootstrap/popper.min.js"></script>
 <script src="./vendor/bootstrap/bootstrap.min.js"></script>
 <script src="./vendor/highlight/highlight.min.js"></script>
 <script>hljs && hljs.initHighlightingOnLoad();</script>
+<script>
+    $(document).ready(function () {
+
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+        });
+
+    });
+</script>
 </body>
 </html>

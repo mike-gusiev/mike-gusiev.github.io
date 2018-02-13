@@ -10,72 +10,114 @@
     <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
-
-<nav class="navbar fixed-top navbar-light bg-light">
-    <a class="navbar-brand" href="javascript:void(0);">Variables Declarations</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"
-    >
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-            <a class="nav-item nav-link" href="./">Best practices</a>
-            <a class="nav-item nav-link" href="./spaces.html">Spaces and code formating</a>
-            <a class="nav-item nav-link" href="./funcs.html">Functions Declarations</a>
-            <a class="nav-item nav-link" href="./if-else.html">Conditional Blocks</a>
-            <a class="nav-item nav-link" href="./classes.html">Classes and Modules</a>
+<div class="wrapper">
+    <nav id="sidebar" class="active">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header">
+            <h3>Variables Declarations</h3>
+            <strong>VD</strong>
         </div>
-    </div>
-</nav>
 
-<article>
-    <ol>
-        <li>
-            Variables should start with a lower case letter and proceed with camel case notation.
-            (eg: someAmazingVariable)
-        </li>
-        <li>
-            Avoid single letter names. Be descriptive with your naming of variables and functions.
-        </li>
-        <li>
-            Don't use "future reserved words" as name of the variables and function
-            <a href="#accordion1" data-toggle="collapse" aria-expanded="false" aria-controls="accordion1">Example</a>
-            <pre id="accordion1" class="collapse" role="tabpanel">
+        <!-- Sidebar Links -->
+        <ul class="list-unstyled components">
+            <li class="active">
+                <a href="index.html">
+                    <span class="categoryPreview">1</span>
+                    <p>Best Practices</p>
+                </a>
+            </li>
+            <li class="active">
+                <a href="spaces.html">
+                    <span class="categoryPreview">2</span>
+                    <p>Spaces and code formating</p>
+                </a>
+            </li>
+            <li>
+                <a href="vars.html">
+                    <span class="categoryPreview">3</span>
+                    <p>Variables Declarations</p>
+                </a>
+            </li>
+            <li>
+                <a href="funcs.html">
+                    <span class="categoryPreview">4</span>
+                    <p>Functions Declarations</p>
+                </a>
+            </li>
+            <li>
+                <a href="if-else.html">
+                    <span class="categoryPreview">5</span>
+                    <p>Conditional Blocks</p>
+                </a>
+            </li>
+            <li>
+                <a href="classes.html">
+                    <span class="categoryPreview">6</span>
+                    <p>Classes and Modules</p>
+                </a>
+            </li>
+        </ul>
+        <button type="button" id="sidebarCollapse">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+    <div id="content">
+        <article>
+            <h3>Variables Declarations</h3>
+            <ol>
+                <li>
+                    Variables should start with a lower case letter and proceed with camel case notation.
+                    (eg: someAmazingVariable)
+                </li>
+                <li>
+                    Avoid single letter names. Be descriptive with your naming of variables and functions.
+                </li>
+                <li>
+                    Don't use "future reserved words" as name of the variables and function
+                    <a href="#accordion1" data-toggle="collapse" aria-expanded="false" aria-controls="accordion1">
+                        Example
+                    </a>
+                    <pre id="accordion1" class="collapse" role="tabpanel">
 <code class="js">
 await, class, const, enum, exports, extends, implements, import, interface, let, package, private, protected, public,
 static, super, yield
 </code>
             </pre>
-        </li>
-        <li>
-            Variables and functions should not be re-declared
-            <a href="#accordion2" data-toggle="collapse" aria-expanded="false" aria-controls="accordion2">Example</a>
-            <pre id="accordion2" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    Variables and functions should not be re-declared
+                    <a href="#accordion2" data-toggle="collapse" aria-expanded="false" aria-controls="accordion2">
+                        Example
+                    </a>
+                    <pre id="accordion2" class="collapse" role="tabpanel">
 <code class="js">
 //bad
 let a = 3;
 ...
 let a = 10;
-    
+
 //good
 let a = 3;
 ...
 let b = 10;
 </code>
             </pre>
-        </li>
-        <li>
-            Variables should not be shadowed
-            <a href="#accordion3" data-toggle="collapse" aria-expanded="false" aria-controls="accordion3">Example</a>
-            <pre id="accordion3" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    Variables should not be shadowed
+                    <a href="#accordion3" data-toggle="collapse" aria-expanded="false" aria-controls="accordion3">
+                        Example
+                    </a>
+                    <pre id="accordion3" class="collapse" role="tabpanel">
 <code class="js">
 //bad
 let a = 3;
 if (arr.length) {
     let a = 10;
 }
-    
+
 //good
 let a = 3;
 if (arr.length) {
@@ -83,57 +125,65 @@ if (arr.length) {
 }
 </code>
             </pre>
-        </li>
-        <li>
-            Use the literal syntax for object and array creation
-            <a href="#accordion4" data-toggle="collapse" aria-expanded="false" aria-controls="accordion4">Example</a>
-            <pre id="accordion4" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    Use the literal syntax for object and array creation
+                    <a href="#accordion4" data-toggle="collapse" aria-expanded="false" aria-controls="accordion4">
+                        Example
+                    </a>
+                    <pre id="accordion4" class="collapse" role="tabpanel">
 <code class="js">
 // bad
 const obj = new Object();
 const arr = new Array();
-    
+
 // good
 const obj = {};
 const arr = [];
 </code>
             </pre>
-        </li>
-        <li>
-            Use single quotes for strings
-            <a href="#accordion5" data-toggle="collapse" aria-expanded="false" aria-controls="accordion5">Example</a>
-            <pre id="accordion5" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    Use single quotes for strings
+                    <a href="#accordion5" data-toggle="collapse" aria-expanded="false" aria-controls="accordion5">
+                        Example
+                    </a>
+                    <pre id="accordion5" class="collapse" role="tabpanel">
 <code class="js">
 //bad
 const str = "This is string";
-    
+
 //good
 const str = 'This is string';
 </code>
             </pre>
-        </li>
-        <li>
-            Variables should always be declared before they are used
-            <a href="#accordion6" data-toggle="collapse" aria-expanded="false" aria-controls="accordion6">Example</a>
-            <pre id="accordion6" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    Variables should always be declared before they are used
+                    <a href="#accordion6" data-toggle="collapse" aria-expanded="false" aria-controls="accordion6">
+                        Example
+                    </a>
+                    <pre id="accordion6" class="collapse" role="tabpanel">
 <code class="js">
 //bad
 $block = this.$element.find('.block');
-    
+
 //good
 const $block = this.$element.find('.block');
-    
+
 //good
 let $block;
 ...
 $block = this.$element.find('.block');
 </code>
             </pre>
-        </li>
-        <li>
-            Declare unassigned variables last
-            <a href="#accordion7" data-toggle="collapse" aria-expanded="false" aria-controls="accordion7">Example</a>
-            <pre id="accordion7" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    Declare unassigned variables last
+                    <a href="#accordion7" data-toggle="collapse" aria-expanded="false" aria-controls="accordion7">
+                        Example
+                    </a>
+                    <pre id="accordion7" class="collapse" role="tabpanel">
 <code class="js">
 // bad
 let i;
@@ -141,7 +191,7 @@ let items = getItems();
 let dragonball;
 let goSportsTeam = true;
 let len;
-    
+
 // good
 let items = getItems();
 let goSportsTeam = true;
@@ -150,12 +200,14 @@ let length;
 let i;
 </code>
             </pre>
-        </li>
-        <li>
-            All calculated values which assigned to a variables should be used. Unused variables (Dead Stores)
-            should be removed
-            <a href="#accordion8" data-toggle="collapse" aria-expanded="false" aria-controls="accordion8">Example</a>
-            <pre id="accordion8" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    All calculated values which assigned to a variables should be used. Unused variables (Dead Stores)
+                    should be removed
+                    <a href="#accordion8" data-toggle="collapse" aria-expanded="false" aria-controls="accordion8">
+                        Example
+                    </a>
+                    <pre id="accordion8" class="collapse" role="tabpanel">
 <code class="js">
 //bad
 getData: () => {
@@ -163,7 +215,7 @@ getData: () => {
     const data = this.getValues();
     return data;
 }
-    
+
 //good
 getData: () => {
     const data = this.getValues();
@@ -171,11 +223,13 @@ getData: () => {
 }
 </code>
             </pre>
-        </li>
-        <li>
-            Use of "var" is forbidden. Use "let" or "const" instead.
-            <a href="#accordion9" data-toggle="collapse" aria-expanded="false" aria-controls="accordion9">Example</a>
-            <pre id="accordion9" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    Use of "var" is forbidden. Use "let" or "const" instead.
+                    <a href="#accordion9" data-toggle="collapse" aria-expanded="false" aria-controls="accordion9">
+                        Example
+                    </a>
+                    <pre id="accordion9" class="collapse" role="tabpanel">
 <code class="js">
 // bad
 var snack = 'Meow Mix';
@@ -187,7 +241,7 @@ function getFood(food) {
     return snack;
 }
 console.log(getFood(false)); // undefined
-    
+
 // good. it allows to avoid hoisting
 let snack = 'Meow Mix';
 function getFood(food) {
@@ -200,55 +254,61 @@ function getFood(food) {
 console.log(getFood(false)); // 'Meow Mix'
 </code>
             </pre>
-        </li>
-        <li>
-            "const" must be used for fixed variables
-            <a href="#accordion10" data-toggle="collapse" aria-expanded="false" aria-controls="accordion10">Example</a>
-            <pre id="accordion10" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    "const" must be used for fixed variables
+                    <a href="#accordion10" data-toggle="collapse" aria-expanded="false" aria-controls="accordion10">
+                        Example
+                    </a>
+                    <pre id="accordion10" class="collapse" role="tabpanel">
 <code class="js">
 // bad
 var str = 'Hello world!';
 console.log(str);
-    
+
 // bad
 let str = 'Hello world!';
 console.log(str);
-    
+
 // good. immutable variables must always be constants!
 const str = 'Hello world!';
 console.log(str);
 </code>
             </pre>
-        </li>
-        <li>
-            Use destructuring instead of direct assignment
-            <a href="#accordion11" data-toggle="collapse" aria-expanded="false" aria-controls="accordion11">Example</a>
-            <pre id="accordion11" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    Use destructuring instead of direct assignment
+                    <a href="#accordion11" data-toggle="collapse" aria-expanded="false" aria-controls="accordion11">
+                        Example
+                    </a>
+                    <pre id="accordion11" class="collapse" role="tabpanel">
 <code class="js">
 // bad
 var arr = [1, 2, 3];
 var a = arr[0];
 var b = arr[1];
 var c = arr[2];
-    
+
 // good
 let [a, b, c] = [1, 2, 3];
-    
+
 // bad
 var luke = { occupation: 'jedi', father: 'anakin' };
 var occupation = luke.occupation; // 'jedi'
 var father = luke.father; // 'anakin'
-    
+
 // good
 let luke = { occupation: 'jedi', father: 'anakin' };
 let {occupation, father} = luke;
 </code>
             </pre>
-        </li>
-        <li>
-            Use ES6 built-in data-structures
-            <a href="#accordion12" data-toggle="collapse" aria-expanded="false" aria-controls="accordion12">Example</a>
-            <pre id="accordion12" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    Use ES6 built-in data-structures
+                    <a href="#accordion12" data-toggle="collapse" aria-expanded="false" aria-controls="accordion12">
+                        Example
+                    </a>
+                    <pre id="accordion12" class="collapse" role="tabpanel">
 <code class="js">
 // Sets
 const s = new Set();
@@ -272,11 +332,13 @@ const ws = new WeakSet();
 ws.add({ data: 42 });
 </code>
             </pre>
-        </li>
-        <li>
-            Use template Literals for complex strings
-            <a href="#accordion13" data-toggle="collapse" aria-expanded="false" aria-controls="accordion13">Example</a>
-            <pre id="accordion13" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    Use template Literals for complex strings
+                    <a href="#accordion13" data-toggle="collapse" aria-expanded="false" aria-controls="accordion13">
+                        Example
+                    </a>
+                    <pre id="accordion13" class="collapse" role="tabpanel">
 <code class="js">
 // bad
 var text = "This string contains \"double quotes\" which are escaped.";
@@ -290,11 +352,13 @@ let today = new Date();
 let text3 = `The time and date is ${today.toLocaleString()}`;
 </code>
             </pre>
-        </li>
-        <li>
-            Use "String.includes" instead of "String.indexOf"
-            <a href="#accordion14" data-toggle="collapse" aria-expanded="false" aria-controls="accordion14">Example</a>
-            <pre id="accordion14" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    Use "String.includes" instead of "String.indexOf"
+                    <a href="#accordion14" data-toggle="collapse" aria-expanded="false" aria-controls="accordion14">
+                        Example
+                    </a>
+                    <pre id="accordion14" class="collapse" role="tabpanel">
 <code class="js">
 // bad
 var string = 'food';
@@ -307,11 +371,13 @@ const substring = 'foo';
 console.log(string.includes(substring));
 </code>
             </pre>
-        </li>
-        <li>
-            Use "String.repeat"
-            <a href="#accordion15" data-toggle="collapse" aria-expanded="false" aria-controls="accordion15">Example</a>
-            <pre id="accordion15" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    Use "String.repeat"
+                    <a href="#accordion15" data-toggle="collapse" aria-expanded="false" aria-controls="accordion15">
+                        Example
+                    </a>
+                    <pre id="accordion15" class="collapse" role="tabpanel">
 <code class="js">
 // bad
 function repeat(string, count) {
@@ -327,14 +393,24 @@ var text = repeat('meow', 3);
 let text = 'meow'.repeat(3);
 </code>
             </pre>
-        </li>
-    </ol>
-</article>
-
+                </li>
+            </ol>
+        </article>
+    </div>
+</div>
 <script src="./vendor/jquery-3.2.1.slim.min.js"></script>
 <script src="./vendor/bootstrap/popper.min.js"></script>
 <script src="./vendor/bootstrap/bootstrap.min.js"></script>
 <script src="./vendor/highlight/highlight.min.js"></script>
 <script>hljs && hljs.initHighlightingOnLoad();</script>
+<script>
+    $(document).ready(function () {
+
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+        });
+
+    });
+</script>
 </body>
 </html>

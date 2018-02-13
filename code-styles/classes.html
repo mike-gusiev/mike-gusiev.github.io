@@ -10,38 +10,78 @@
     <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
-
-<nav class="navbar fixed-top navbar-light bg-light">
-    <a class="navbar-brand" href="javascript:void(0);">Classes and Modules</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"
-    >
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-            <a class="nav-item nav-link" href="./">Best practices</a>
-            <a class="nav-item nav-link" href="./spaces.html">Spaces and code formating</a>
-            <a class="nav-item nav-link" href="./vars.html">Variables Declarations</a>
-            <a class="nav-item nav-link" href="./funcs.html">Functions Declarations</a>
-            <a class="nav-item nav-link" href="./if-else.html">Conditional Blocks</a>
+<div class="wrapper">
+    <nav id="sidebar" class="active">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header">
+            <h3>Classes and Modules</h3>
+            <strong>C&M</strong>
         </div>
-    </div>
-</nav>
 
-<article>
-    <ol>
-        <li>
-            Class names should start with an upper case letter and use camel case notation. (Footer, WeatherHub,
-            BaseModule)
-        </li>
-        <li>
-            Each function should be separated by empty line.
-        </li>
-        <li>
-            Don't use reserved words as keys. It won't work in IE8. Use readable synonyms in place of reserved words.
-            <a href="#accordion6" data-toggle="collapse" aria-expanded="false" aria-controls="accordion6">Example</a>
-            <pre id="accordion6" class="collapse" role="tabpanel">
+        <!-- Sidebar Links -->
+        <ul class="list-unstyled components">
+            <li class="active">
+                <a href="index.html">
+                    <span class="categoryPreview">1</span>
+                    <p>Best Practices</p>
+                </a>
+            </li>
+            <li class="active">
+                <a href="spaces.html">
+                    <span class="categoryPreview">2</span>
+                    <p>Spaces and code formating</p>
+                </a>
+            </li>
+            <li>
+                <a href="vars.html">
+                    <span class="categoryPreview">3</span>
+                    <p>Variables Declarations</p>
+                </a>
+            </li>
+            <li>
+                <a href="funcs.html">
+                    <span class="categoryPreview">4</span>
+                    <p>Functions Declarations</p>
+                </a>
+            </li>
+            <li>
+                <a href="if-else.html">
+                    <span class="categoryPreview">5</span>
+                    <p>Conditional Blocks</p>
+                </a>
+            </li>
+            <li>
+                <a href="classes.html">
+                    <span class="categoryPreview">6</span>
+                    <p>Classes and Modules</p>
+                </a>
+            </li>
+        </ul>
+        <button type="button" id="sidebarCollapse">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+    <div id="content">
+        <article>
+            <h3>Classes and Modules</h3>
+            <ol>
+                <li>
+                    Class names should start with an upper case letter and use camel case notation. (Footer, WeatherHub,
+                    BaseModule)
+                </li>
+                <li>
+                    Each function should be separated by empty line.
+                </li>
+                <li>
+                    Don't use reserved words as keys. It won't work in IE8. Use readable synonyms in place of reserved
+
+                    words.
+                    <a href="#accordion6" data-toggle="collapse" aria-expanded="false" aria-controls="accordion6">
+                        Example
+                    </a>
+                    <pre id="accordion6" class="collapse" role="tabpanel">
 <code class="js">
 // bad
 const superman = {
@@ -49,12 +89,12 @@ const superman = {
     default: { clark: 'kent' },
     private: true
 };
-    
+
 // bad
 const superman = {
     klass: 'alien'
 };
-    
+
 // good
 const superman = {
     defaults: { clark: 'kent' },
@@ -63,27 +103,31 @@ const superman = {
 };
 </code>
             </pre>
-        </li>
-        <li>
-            When saving a reference to this use self.
-            <a href="#accordion7" data-toggle="collapse" aria-expanded="false" aria-controls="accordion7">Example</a>
-            <pre id="accordion7" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    When saving a reference to this use self.
+                    <a href="#accordion7" data-toggle="collapse" aria-expanded="false" aria-controls="accordion7">
+                        Example
+                    </a>
+                    <pre id="accordion7" class="collapse" role="tabpanel">
 <code class="js">
 //bad
 const _this = this;
-    
+
 //bad
 const that = this;
-    
+
 //good
 const self = this;
 </code>
             </pre>
-        </li>
-        <li>
-            The names of model properties should not contains spaces and quotes
-            <a href="#accordion8" data-toggle="collapse" aria-expanded="false" aria-controls="accordion8">Example</a>
-            <pre id="accordion8" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    The names of model properties should not contains spaces and quotes
+                    <a href="#accordion8" data-toggle="collapse" aria-expanded="false" aria-controls="accordion8">
+                        Example
+                    </a>
+                    <pre id="accordion8" class="collapse" role="tabpanel">
 <code class="js">
 //bad
 defaults: {
@@ -98,11 +142,13 @@ defaults: {
 }
 </code>
             </pre>
-        </li>
-        <li>
-            Use ES6 export instead of CommonJS syntax
-            <a href="#accordion9" data-toggle="collapse" aria-expanded="false" aria-controls="accordion9">Example</a>
-            <pre id="accordion9" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    Use ES6 export instead of CommonJS syntax
+                    <a href="#accordion9" data-toggle="collapse" aria-expanded="false" aria-controls="accordion9">
+                        Example
+                    </a>
+                    <pre id="accordion9" class="collapse" role="tabpanel">
 <code class="js">
 // bad
 module.exports = 1;
@@ -120,11 +166,13 @@ const sumThree = (a, b, c) => a + b + c;
 export { sumTwo, sumThree };
 </code>
             </pre>
-        </li>
-        <li>
-            Use ES6 import syntax
-            <a href="#accordion10" data-toggle="collapse" aria-expanded="false" aria-controls="accordion10">Example</a>
-            <pre id="accordion10" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    Use ES6 import syntax
+                    <a href="#accordion10" data-toggle="collapse" aria-expanded="false" aria-controls="accordion10">
+                        Example
+                    </a>
+                    <pre id="accordion10" class="collapse" role="tabpanel">
 <code class="js">
 import 'underscore';
 
@@ -138,11 +186,13 @@ import {
 import * as util from 'math/addition';
 </code>
             </pre>
-        </li>
-        <li>
-            Class declaration syntax
-            <a href="#accordion11" data-toggle="collapse" aria-expanded="false" aria-controls="accordion11">Example</a>
-            <pre id="accordion11" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    Class declaration syntax
+                    <a href="#accordion11" data-toggle="collapse" aria-expanded="false" aria-controls="accordion11">
+                        Example
+                    </a>
+                    <pre id="accordion11" class="collapse" role="tabpanel">
 <code class="js">
 // basic class syntax
 class Person {
@@ -177,11 +227,13 @@ var p = new Person('Mike', 25, 'male');
 var p2 = new Personal('Mike', 25, 'male', 'js developer', 'arduino');
 </code>
             </pre>
-        </li>
-        <li>
-            Use Getter/Setter functions for object's hidden assignments
-            <a href="#accordion12" data-toggle="collapse" aria-expanded="false" aria-controls="accordion12">Example</a>
-            <pre id="accordion12" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    Use Getter/Setter functions for object's hidden assignments
+                    <a href="#accordion12" data-toggle="collapse" aria-expanded="false" aria-controls="accordion12">
+                        Example
+                    </a>
+                    <pre id="accordion12" class="collapse" role="tabpanel">
 <code class="js">
 // if you need dynamic calculation of the variable
 var person = {
@@ -206,14 +258,26 @@ person.fullName = 'Bond 007';
 console.log(person.fullName); // Bond 007
 </code>
             </pre>
-        </li>
-    </ol>
-</article>
+                </li>
+            </ol>
+        </article>
+    </div>
+</div>
+
 
 <script src="./vendor/jquery-3.2.1.slim.min.js"></script>
 <script src="./vendor/bootstrap/popper.min.js"></script>
 <script src="./vendor/bootstrap/bootstrap.min.js"></script>
 <script src="./vendor/highlight/highlight.min.js"></script>
 <script>hljs && hljs.initHighlightingOnLoad();</script>
+<script>
+    $(document).ready(function () {
+
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+        });
+
+    });
+</script>
 </body>
 </html>

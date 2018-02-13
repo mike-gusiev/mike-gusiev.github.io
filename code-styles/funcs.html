@@ -10,83 +10,125 @@
     <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
-
-<nav class="navbar fixed-top navbar-light bg-light">
-    <a class="navbar-brand" href="javascript:void(0);">Functions Declarations</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"
-    >
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-            <a class="nav-item nav-link" href="./">Best practices</a>
-            <a class="nav-item nav-link" href="./spaces.html">Spaces and code formating</a>
-            <a class="nav-item nav-link" href="./vars.html">Variables Declarations</a>
-            <a class="nav-item nav-link" href="./if-else.html">Conditional Blocks</a>
-            <a class="nav-item nav-link" href="./classes.html">Classes and Modules</a>
+<div class="wrapper">
+    <nav id="sidebar" class="active">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header">
+            <h3>Functions Declarations</h3>
+            <strong>FD</strong>
         </div>
-    </div>
-</nav>
 
-<article>
-    <ol>
-        <li>
-            Function names should start with a lower case letter and use camel case notation. (eg: getData, render,
-            update, initProperties)
-        </li>
-        <li>
-            Function names exclude callbacks and event handlers should be actions (eg: getData, render, update,
-            initProperties)
-        </li>
-        <li>
-            Function arguments should be separated by spaces
-            <a href="#accordion1" data-toggle="collapse" aria-expanded="false" aria-controls="accordion1">Example</a>
-            <pre id="accordion1" class="collapse" role="tabpanel">
+        <!-- Sidebar Links -->
+        <ul class="list-unstyled components">
+            <li class="active">
+                <a href="index.html">
+                    <span class="categoryPreview">1</span>
+                    <p>Best Practices</p>
+                </a>
+            </li>
+            <li class="active">
+                <a href="spaces.html">
+                    <span class="categoryPreview">2</span>
+                    <p>Spaces and code formating</p>
+                </a>
+            </li>
+            <li>
+                <a href="vars.html">
+                    <span class="categoryPreview">3</span>
+                    <p>Variables Declarations</p>
+                </a>
+            </li>
+            <li>
+                <a href="funcs.html">
+                    <span class="categoryPreview">4</span>
+                    <p>Functions Declarations</p>
+                </a>
+            </li>
+            <li>
+                <a href="if-else.html">
+                    <span class="categoryPreview">5</span>
+                    <p>Conditional Blocks</p>
+                </a>
+            </li>
+            <li>
+                <a href="classes.html">
+                    <span class="categoryPreview">6</span>
+                    <p>Classes and Modules</p>
+                </a>
+            </li>
+        </ul>
+        <button type="button" id="sidebarCollapse">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+    <div id="content">
+        <article>
+            <h3>Functions Declarations</h3>
+            <ol>
+                <li>
+                    Function names should start with a lower case letter and use camel case notation. (eg: getData,
+                    render, update, initProperties)
+                </li>
+                <li>
+                    Function names exclude callbacks and event handlers should be actions (eg: getData, render, update,
+                    initProperties)
+                </li>
+                <li>
+                    Function arguments should be separated by spaces
+                    <a href="#accordion1" data-toggle="collapse" aria-expanded="false" aria-controls="accordion1">
+                        Example
+                    </a>
+                    <pre id="accordion1" class="collapse" role="tabpanel">
 <code class="js">
 //bad
 fun: (a,b,c) => {
     //...
 }
-    
+
 //good
 fun: (a, b, c) => {
     //...
 }
 </code>
             </pre>
-        </li>
-        <li>
-            Assignments should not be made from within sub-expressions
-            <a href="#accordion2" data-toggle="collapse" aria-expanded="false" aria-controls="accordion2">Example</a>
-            <pre id="accordion2" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    Assignments should not be made from within sub-expressions
+                    <a href="#accordion2" data-toggle="collapse" aria-expanded="false" aria-controls="accordion2">
+                        Example
+                    </a>
+                    <pre id="accordion2" class="collapse" role="tabpanel">
 <code class="js">
 //bad
 doSomething(i = 42);
-    
+
 //good
 let i = 42;
 doSomething(i);
 </code>
             </pre>
-        </li>
-        <li>
-            Functions should not have too many lines. Maximum authorized lines in a function - 100!
-        </li>
-        <li>
-            Functions should not have too many parameters. The maximum authorized number of parameters - 7!
-        </li>
-        <li>
-            Function calls should not pass extra arguments
-            <a href="#accordion3" data-toggle="collapse" aria-expanded="false" aria-controls="accordion3">Example</a>
-            <pre id="accordion3" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    Functions should not have too many lines. Maximum authorized lines in a function - 100!
+                </li>
+                <li>
+                    Functions should not have too many parameters. The maximum authorized number of parameters - 7!
+                </li>
+                <li>
+                    Function calls should not pass extra arguments
+                    <a href="#accordion3" data-toggle="collapse" aria-expanded="false" aria-controls="accordion3">
+                        Example
+                    </a>
+                    <pre id="accordion3" class="collapse" role="tabpanel">
 <code class="js">
 //bad
 const say = (a, b) => {
     print(a + ' ' + b);
 }
 say('hello', 'world', '!');
-    
+
 //good
 const say = (a, b) => {
     print(a + ' ' + b);
@@ -94,18 +136,21 @@ const say = (a, b) => {
 say('hello', 'world');
 </code>
             </pre>
-        </li>
-        <li>
-            Results of operations on strings should not be ignored. Every variable should be used or returned as result.
-            <a href="#accordion5" data-toggle="collapse" aria-expanded="false" aria-controls="accordion5">Example</a>
-            <pre id="accordion5" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    Results of operations on strings should not be ignored. Every variable should be used or returned
+                    as result.
+                    <a href="#accordion5" data-toggle="collapse" aria-expanded="false" aria-controls="accordion5">
+                        Example
+                    </a>
+                    <pre id="accordion5" class="collapse" role="tabpanel">
 <code class="js">
 //bad
 fun: () => {
     let str = "...";
     str.toUpperCase();
 }
-    
+
 //good
 fun: () => {
     let str = '...';
@@ -114,14 +159,16 @@ fun: () => {
 }
 </code>
             </pre>
-        </li>
-        <li>
-            Each function should be separated by empty line.
-        </li>
-        <li>
-            IIFEs are forbidden. Use blocks instead
-            <a href="#accordion6" data-toggle="collapse" aria-expanded="false" aria-controls="accordion6">Example</a>
-            <pre id="accordion6" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    Each function should be separated by empty line.
+                </li>
+                <li>
+                    IIFEs are forbidden. Use blocks instead
+                    <a href="#accordion6" data-toggle="collapse" aria-expanded="false" aria-controls="accordion6">
+                        Example
+                    </a>
+                    <pre id="accordion6" class="collapse" role="tabpanel">
 <code class="js">
 // bad. Immediately Invoked Function Expressions are obsolete!
 (function () {
@@ -136,11 +183,13 @@ fun: () => {
 }
 </code>
             </pre>
-        </li>
-        <li>
-            Use arrow functions to preserve "this" value
-            <a href="#accordion7" data-toggle="collapse" aria-expanded="false" aria-controls="accordion7">Example</a>
-            <pre id="accordion7" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    Use arrow functions to preserve "this" value
+                    <a href="#accordion7" data-toggle="collapse" aria-expanded="false" aria-controls="accordion7">
+                        Example
+                    </a>
+                    <pre id="accordion7" class="collapse" role="tabpanel">
 <code class="js">
 // bad
 setTimeout(function () {
@@ -159,11 +208,13 @@ setTimeout(() => {
 }, 1000);
 </code>
             </pre>
-        </li>
-        <li>
-            Use promises instead of nested code
-            <a href="#accordion8" data-toggle="collapse" aria-expanded="false" aria-controls="accordion8">Example</a>
-            <pre id="accordion8" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    Use promises instead of nested code
+                    <a href="#accordion8" data-toggle="collapse" aria-expanded="false" aria-controls="accordion8">
+                        Example
+                    </a>
+                    <pre id="accordion8" class="collapse" role="tabpanel">
 <code class="js">
 // bad
 func1(function (value1) {
@@ -188,11 +239,13 @@ func1(value1)
     });
 </code>
             </pre>
-        </li>
-        <li>
-            Use function default parameters instead of chain assignments
-            <a href="#accordion9" data-toggle="collapse" aria-expanded="false" aria-controls="accordion9">Example</a>
-            <pre id="accordion9" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    Use function default parameters instead of chain assignments
+                    <a href="#accordion9" data-toggle="collapse" aria-expanded="false" aria-controls="accordion9">
+                        Example
+                    </a>
+                    <pre id="accordion9" class="collapse" role="tabpanel">
 <code class="js">
 // bad
 function addTwoNumbers(x, y) {
@@ -205,11 +258,13 @@ function addTwoNumbers(x, y) {
 const addTwoNumbers = (x = 0, y = 0) => x + y;
 </code>
             </pre>
-        </li>
-        <li>
-            Use rest operator "..." instead of "arguments"
-            <a href="#accordion10" data-toggle="collapse" aria-expanded="false" aria-controls="accordion10">Example</a>
-            <pre id="accordion10" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    Use rest operator "..." instead of "arguments"
+                    <a href="#accordion10" data-toggle="collapse" aria-expanded="false" aria-controls="accordion10">
+                        Example
+                    </a>
+                    <pre id="accordion10" class="collapse" role="tabpanel">
 <code class="js">
 // bad
 function logArguments(par1) {
@@ -228,11 +283,13 @@ const logArguments = (par1, ...args) => {
 };
 </code>
             </pre>
-        </li>
-        <li>
-            Use spread operator whenever it possible
-            <a href="#accordion11" data-toggle="collapse" aria-expanded="false" aria-controls="accordion11">Example</a>
-            <pre id="accordion11" class="collapse" role="tabpanel">
+                </li>
+                <li>
+                    Use spread operator whenever it possible
+                    <a href="#accordion11" data-toggle="collapse" aria-expanded="false" aria-controls="accordion11">
+                        Example
+                    </a>
+                    <pre id="accordion11" class="collapse" role="tabpanel">
 <code class="js">
 // bad. In ES5, we could find the max of values in an array by using the apply method on Math.max like this:
 Math.max.apply(null, [-1, 100, 9001, -32]); // 9001
@@ -245,14 +302,24 @@ let cities = ['San Francisco', 'Los Angeles'];
 let places = ['Miami', ...cities, 'Chicago']; // ['Miami', 'San Francisco', 'Los Angeles', 'Chicago']
 </code>
             </pre>
-        </li>
-    </ol>
-</article>
-
+                </li>
+            </ol>
+        </article>
+    </div>
+</div>
 <script src="./vendor/jquery-3.2.1.slim.min.js"></script>
 <script src="./vendor/bootstrap/popper.min.js"></script>
 <script src="./vendor/bootstrap/bootstrap.min.js"></script>
 <script src="./vendor/highlight/highlight.min.js"></script>
 <script>hljs && hljs.initHighlightingOnLoad();</script>
+<script>
+    $(document).ready(function () {
+
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+        });
+
+    });
+</script>
 </body>
 </html>

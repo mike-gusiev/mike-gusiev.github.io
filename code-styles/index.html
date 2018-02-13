@@ -10,739 +10,854 @@
     <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
+    <div class="wrapper">
+        <nav id="sidebar" class="active">
+            <!-- Sidebar Header -->
+            <div class="sidebar-header">
+                <h3>Best Practices</h3>
+                <strong>BP</strong>
+            </div>
 
-<nav class="navbar fixed-top navbar-light bg-light">
-    <a class="navbar-brand" href="javascript:void(0);">Best Practices</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"
-    >
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-            <a class="nav-item nav-link" href="./spaces.html">Spaces and code formating</a>
-            <a class="nav-item nav-link" href="./vars.html">Variables Declarations</a>
-            <a class="nav-item nav-link" href="./funcs.html">Functions Declarations</a>
-            <a class="nav-item nav-link" href="./if-else.html">Conditional Blocks</a>
-            <a class="nav-item nav-link" href="./classes.html">Classes and Modules</a>
+            <!-- Sidebar Links -->
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="index.html">
+                        <span class="categoryPreview">1</span>
+                        <p>Best Practices</p>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="spaces.html">
+                        <span class="categoryPreview">2</span>
+                        <p>Spaces and code formating</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="vars.html">
+                        <span class="categoryPreview">3</span>
+                        <p>Variables Declarations</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="funcs.html">
+                        <span class="categoryPreview">4</span>
+                        <p>Functions Declarations</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="if-else.html">
+                        <span class="categoryPreview">5</span>
+                        <p>Conditional Blocks</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="classes.html">
+                        <span class="categoryPreview">6</span>
+                        <p>Classes and Modules</p>
+                    </a>
+                </li>
+            </ul>
+            <button type="button" id="sidebarCollapse">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+        <div id="content">
+            <article>
+                <h3>Best Practices</h3>
+                <ol>
+                    <li>
+                        Whenever you see a bad code, you have to refactor it! You should always leave a better code,
+                        then it was before you.
+                    </li>
+                    <li>
+                        Always write (and refactor) code into ES6 style. ES5 is already obsolete! You may use ES5 only
+                        for native modules, which are not being compiled by WebPack or etc.
+                        <a href="#accordion1" data-toggle="collapse" aria-expanded="false" aria-controls="accordion1">
+                            Example
+                        </a>
+                        <pre id="accordion1" class="collapse" role="tabpanel">
+        <code class="js">
+        // bad
+        var x = 3;
+        function doubleMe(x) {
+            return x * 2;
+        }
+        var myClass= {
+            fun: function() {
+                var str = '...';
+                str.toUpperCase();
+            }
+        }
+
+        // good
+        let x = 3;
+        const doubleMe = (x) => x * 2;
+        export default MyClass {
+            fun() {
+                const str = '...';
+                str.toUpperCase();
+            }
+        }
+        </code>
+                    </pre>
+                    </li>
+                    <li>
+                        Never commit commented out blocks of code, "<b>console.log</b>", "<b>debugger;</b>"
+                        and "<b>alert()</b>"! Always remove obsolete and unused variables and lines code. Don't make
+                        other team members to do your work instead of you.
+                        <a href="#accordion2" data-toggle="collapse" aria-expanded="false" aria-controls="accordion2">
+                            Example
+                        </a>
+
+                        <pre id="accordion2" class="collapse" role="tabpanel">
+        <code class="js">
+        // never commit this garbage into the repo
+        onClick(event) {
+            /*if (event && event.target) {
+                event.target.setAttribute('data-id', '');
+            }*/
+
+            //such lines too:
+            console.log('onClick', event);
+            debugger;
+            alert('Button was clicked!');
+        }
+        // 'event' variable should also be removed from arguments list, because it will be unused
+            after you remove comments
+        </code>
+                    </pre>
+                    </li>
+                    <li>
+                        Use should always predict which variables might break your application. Default values must
+                        be set for such cases.
+                        <a href="#accordion3" data-toggle="collapse" aria-expanded="false" aria-controls="accordion3">
+                            Example
+                        </a>
+
+                        <pre id="accordion3" class="collapse" role="tabpanel">
+        <code class="js">
+        // bad
+        initProperties() {
+            this.mainTitle = this.config.title;
+            let items;
+            if (...) {
+                // some logic that defines array of items
+            }
+        }
+        onDataGet(result) {
+            this.cardsLength = result.count;
+        }
+
+        // good
+        initProperties() {
+            this.mainTitle = this.config.title || 'Default title';
+            const items = [];
+            if (...) {
+                // your new logic have to push items into existing array, instead of defining a new array
+            }
+        }
+        onDataGet(result) {
+            this.cardsLength = result.count || 0;
+        }
+        </code>
+                    </pre>
+                    </li>
+                    <li>
+                        Always check suspicious variables and objects before accessing to them. Your application
+                        should not be broken because of undefined data.
+                        <a href="#accordion4" data-toggle="collapse" aria-expanded="false" aria-controls="accordion4">
+                            Example
+                        </a>
+
+                        <pre id="accordion4" class="collapse" role="tabpanel">
+        <code class="js">
+        // bad
+        parseData(data) {
+            if (data.settings.screen) {
+                //...
+            }
+            data.products[0].name = 'name';
+        }
+
+        // good
+        parseData(data) {
+            if (data.settings && data.settings.screen) {
+                //...
+            }
+            if (data.products && data.products.length) {
+                data.products[0].name = 'name';
+            }
+        }
+        </code>
+                    </pre>
+                    </li>
+                    <li>
+                        Source files should not have any duplicated blocks of code! Put duplicated code into
+                        reusable functions.
+                    </li>
+                    <li>
+                        Never exceed the line length limit. Your lines of code should not be longer then 120 symbols.
+                        if it's longer - you have to refactor your code.
+                        <a href="#accordion5" data-toggle="collapse" aria-expanded="false" aria-controls="accordion5">
+                            Example
+                        </a>
+
+                        <pre id="accordion5" class="collapse" role="tabpanel">
+                        <a class="image-preview" href="./images/1.png" target="_blank">
+                            <img style="width:100%; height:auto;" src="./images/1.png"/>
+                        </a>
+                    </pre>
+                    </li>
+                    <li>
+                        Files should not have too many lines. Maximum authorized lines in a file - 1000. You have to
+                        refactor your code, if it contains too many lines.
+                    </li>
+                    <li>
+                        Use "<b>debugger;</b>" instead of console.log(). Use "<b>call stack</b>" in <b>debugger;</b>
+                        mode, to find out the chain of functions executions. By using debugger, you can easily
+                        track down the unknown behaviour in any code position.
+                        <a href="#accordion6" data-toggle="collapse" aria-expanded="false" aria-controls="accordion6">
+                            Example
+                        </a>
+
+                        <pre id="accordion6" class="collapse" role="tabpanel">
+                        <a class="image-preview" href="./images/2.png" target="_blank">
+                            <img style="width:100%; height:auto;" src="./images/2.png"/>
+                        </a>
+                    </pre>
+                    </li>
+                    <li>
+                        Use keyboard shortcuts to collapse/expand the code. It will help you read code faster.
+                        Use this feature in your screenshots too, to hide unnecessary information and help other
+                        people understand your code.
+                        <a href="#accordion7" data-toggle="collapse" aria-expanded="false" aria-controls="accordion7">
+                            Example
+                        </a>
+
+                        <pre id="accordion7" class="collapse" role="tabpanel">
+                        <a class="image-preview" href="./images/3.png" target="_blank">
+                            <img style="width:100%; height:auto;" src="./images/3.png"/>
+                        </a>
+                    </pre>
+                    </li>
+                    <li>
+                        Use external tools for screenshots capture (e.g. <b>Monosnap</b>). It will help you
+                        to organize your screenshots: you'll be able to add text or arrows into screenshots,
+                        all your screenshots will be stored in the history, and you'll get an external link with
+                        screenshot. Use this link to share your screenshots in any chat app.
+                        <a href="#accordion8" data-toggle="collapse" aria-expanded="false" aria-controls="accordion8">
+                            Example
+                        </a>
+
+                        <pre id="accordion8" class="collapse" role="tabpanel">
+                        <a class="image-preview" href="./images/4.png" target="_blank">
+                            <img style="width:100%; height:auto;" src="./images/4.png"/>
+                        </a>
+                    </pre>
+                    </li>
+                </ol>
+                <h3>jQuery</h3>
+                <ol>
+                    <li>
+                        Variables and properties that reference DOM elements should start with a dollar sign.
+                        <a href="#accordion15" data-toggle="collapse" aria-expanded="false" aria-controls="accordion15">
+                            Example
+                        </a>
+
+                        <pre id="accordion15" class="collapse" role="tabpanel">
+        <code class="js">
+        // bad
+        const playButton = this.$('.play-button');
+        this.muteButton = this.$container.find('.mute-button');
+
+        // good
+        const $playButton = this.$('.play-button');
+        this.$muteButton = this.$container.find('.mute-button');
+        </code>
+                    </pre>
+                    </li>
+                    <li>
+                        Cache your jQuery selectors.
+                        <a href="#accordion9" data-toggle="collapse" aria-expanded="false" aria-controls="accordion9">
+                            Example
+                        </a>
+
+                        <pre id="accordion9" class="collapse" role="tabpanel">
+        <code class="js">
+        // bad
+        $('.sidebar').hide();
+        $('.sidebar').css({
+            'background-color': 'pink'
+        });
+
+        // good
+        var $sidebar = $('.sidebar');
+        $sidebar.hide();
+        $sidebar.css({
+            'background-color': 'pink'
+        });
+        </code>
+                    </pre>
+                    </li>
+                    <li>
+                        Instead of lookup in the whole document, search for elements in your module's children.
+                        It's much faster.
+                        <a href="#accordion10" data-toggle="collapse" aria-expanded="false" aria-controls="accordion10">
+                            Example
+                        </a>
+
+                        <pre id="accordion10" class="collapse" role="tabpanel">
+        <code class="js">
+        // bad
+        $('.play-button').hide();
+
+        // good
+        this.$container.find('.play-button').hide();
+        </code>
+                    </pre>
+                    </li>
+                    <li>
+                        Element type selectors should not be used with class selectors.
+                        <a href="#accordion11" data-toggle="collapse" aria-expanded="false" aria-controls="accordion11">
+                            Example
+                        </a>
+
+                        <pre id="accordion11" class="collapse" role="tabpanel">
+        <code class="js">
+        //bad
+        var $products = $('div.products');
+
+        //good
+        var $products = $('.products');
+        </code>
+                    </pre>
+                    </li>
+                    <li>
+                        "[type=...]" should be used to select elements by type. Otherwise it affects the performance.
+                        <a href="#accordion12" data-toggle="collapse" aria-expanded="false" aria-controls="accordion12">
+                            Example
+                        </a>
+
+                        <pre id="accordion12" class="collapse" role="tabpanel">
+        <code class="js">
+        //bad
+        var $input = $('form input:radio');
+
+        //good
+        var $input = $('form input[type=radio]');
+        </code>
+                    </pre>
+                    </li>
+                    <li>
+                        "find" should be used to select the children of an element known by id. Otherwise it affects the
+                        performance.
+                        <a href="#accordion13" data-toggle="collapse" aria-expanded="false" aria-controls="accordion13">
+                            Example
+                        </a>
+
+                        <pre id="accordion13" class="collapse" role="tabpanel">
+        <code class="js">
+        //bad
+        var $productIds = $('#products div.id');
+
+        //good
+        var $productIds = $('#products').find('.id');
+        </code>
+                    </pre>
+                    </li>
+                    <li>
+                        Universal selectors should not be used.
+                        <a href="#accordion14" data-toggle="collapse" aria-expanded="false" aria-controls="accordion14">
+                            Example
+                        </a>
+
+                        <pre id="accordion14" class="collapse" role="tabpanel">
+        <code class="js">
+        //bad. extremely expensive
+        $('.buttons > *');
+
+        //good
+        $('.buttons').children();
+        </code>
+                    </pre>
+                    </li>
+                    <li>
+                        Deprecated jQuery methods should not be used
+                        <a href="#accordion31" data-toggle="collapse" aria-expanded="false" aria-controls="accordion31">
+                            Example
+                        </a>
+                        <pre id="accordion31" class="collapse" role="tabpanel">
+        <code class="js">
+        .andSelf() .context .die() .error() jQuery.boxModel jQuery.browser jQuery.sub() jQuery.support .live() .load()
+        .selector .size() .toggle() .unload()
+        </code>
+                    </pre>
+                    </li>
+                </ol>
+                <h3>Angular</h3>
+                <ol>
+                    <li>
+                        Always set types for your variables. Never use "any" type.
+                        <a href="#accordion16" data-toggle="collapse" aria-expanded="false" aria-controls="accordion16">
+                            Example
+                        </a>
+
+                        <pre id="accordion16" class="collapse" role="tabpanel">
+        <code class="js">
+        // bad
+        export class MyComponent {
+
+            @Input() type;
+            public apps: any[];
+            public currentApp = {};
+            public isHidden = true;
+
+            setCategories(apps: any) {
+                // ...
+            }
+        }
+
+        // good
+        export class MyComponent {
+
+            @Input() type: string;
+            public apps: App[];
+            public currentApp: App = {};
+            public isHidden: boolean = true;
+
+            setCategories(apps: App[]): void {
+                // ...
+            }
+        }
+        </code>
+                    </pre>
+                    </li>
+                    <li>
+                        Variables, properties and functions which contain Observable, should end with $ sign.
+                        <a href="#accordion17" data-toggle="collapse" aria-expanded="false" aria-controls="accordion17">
+                            Example
+                        </a>
+
+                        <pre id="accordion17" class="collapse" role="tabpanel">
+        <code class="js">
+        // bad
+        store(storeName: string): Observable<Storage> {
+            const storeSubject = `${storeName}Subject`;
+            if (!this[storeSubject]) {
+              this[storeSubject] = new Subject<Storage>();
+            }
+            return this[storeSubject].asObservable();
+        }
+        const myObservable = this.store('user1');
+
+        // good
+        store$(storeName: string): Observable<Storage> {
+            const storeSubject = `${storeName}Subject`;
+            if (!this[storeSubject]) {
+              this[storeSubject] = new Subject<Storage>();
+            }
+            return this[storeSubject].asObservable();
+        }
+        const myObservable$ = this.store$('user1');
+        </code>
+                    </pre>
+                    </li>
+                </ol>
+                <h3>React</h3>
+                <ol>
+                    <li>
+                        Always use <b>propTypes</b>! Even when component doesn't have any props! Put callbacks at
+                        very bottom of propTypes list! Use defaultProps for not required properties.
+                        <a href="#accordion18" data-toggle="collapse" aria-expanded="false" aria-controls="accordion18">
+                            Example
+                        </a>
+
+                        <pre id="accordion18" class="collapse" role="tabpanel">
+        <code class="js">
+        // good
+        MyComponent.propTypes = {
+            isVisible: PropTypes.bool,
+            type: PropTypes.oneOf(['News', 'Photos']).isRequired,
+            options: PropTypes.shape({
+                color: PropTypes.string,
+                fontSize: PropTypes.number
+            }),
+            onClick: PropTypes.func.isRequired,
+            onHide: PropTypes.func.isRequired
+        };
+
+        MyComponent.defaultProps = {
+            isVisible: false,
+            options: {
+                color: '#000',
+                fontSize: '12px'
+            }
+        }
+
+        // when component doesn't have props, use empty object
+        MyComponent2.propTypes = {}
+        </code>
+                    </pre>
+                    </li>
+                    <li>
+                        Don't use <b>any</b>, <b>object</b>, <b>array</b> in PropTypes. Use <b>shape</b> and
+                        <b>arrayOf</b> instead!
+                        <a href="#accordion19" data-toggle="collapse" aria-expanded="false" aria-controls="accordion19">
+                            Example
+                        </a>
+
+                        <pre id="accordion19" class="collapse" role="tabpanel">
+        <code class="js">
+        // bad
+        MyComponent.propTypes = {
+            isVisible: PropTypes.any.isRequired,
+            user: PropTypes.object.isRequired,
+            values: PropTypes.array.isRequired
+        };
+
+        // good
+        MyComponent.propTypes = {
+            isVisible: PropTypes.bool.isRequired,
+            user: PropTypes.shape({
+                name: PropTypes.string.isRequired,
+                age: PropTypes.number.isRequired,
+                email: PropTypes.string.isRequired
+            }).isRequired,
+            values: PropTypes.arrayOf(PropTypes.number).isRequired
+        };
+        </code>
+                    </pre>
+                    </li>
+                    <li>
+                        Callbacks naming: use "<b>handle</b>SomethingClick" for local methods,
+                        use "<b>on</b>SomethingClick" for props callbacks.
+                        <a href="#accordion20" data-toggle="collapse" aria-expanded="false" aria-controls="accordion20">
+                            Example
+                        </a>
+
+                        <pre id="accordion20" class="collapse" role="tabpanel">
+        <code class="js">
+        &lt;AvatarEditor
+            name="profile"
+            onClick={this.handleAvatarClick}
+        /&gt;
+        </code>
+                    </pre>
+                    </li>
+                    <li>
+                        Props indentation: short component with props should be placed into one line, for lots of props,
+                        each prop should be placed into separate line. See example.
+                        <a href="#accordion21" data-toggle="collapse" aria-expanded="false" aria-controls="accordion21">
+                            Example
+                        </a>
+
+                        <pre id="accordion21" class="collapse" role="tabpanel">
+        <code class="js">
+        // small amount of props
+        &lt;AvatarEditor ref={this.setEditorRef} image={this.state.image} /&gt;
+
+        // a lot of props
+        &lt;AvatarEditor
+            ref={this.setEditorRef}
+            image={this.state.image}
+            width={this.state.width}
+            height={this.state.height}
+            position={this.state.position}
+            borderRadius={this.state.borderRadius}
+            color={[0, 0, 0, 0.7]}
+            scale={parseFloat(this.state.scale)}
+            rotate={parseFloat(this.state.rotate)}
+            onPositionChange={this.handlePositionChange}
+        /&gt;
+        </code>
+                    </pre>
+                    </li>
+                    <li>
+                        Quotes in props: use double quotes for all string props without curly braces. In curly braces,
+                        use single quotes. See example.
+                        <a href="#accordion22" data-toggle="collapse" aria-expanded="false" aria-controls="accordion22">
+                            Example
+                        </a>
+
+                        <pre id="accordion22" class="collapse" role="tabpanel">
+        <code class="js">
+        &lt;MyComponent
+            name="best component"
+            version={'version #' + item.version}
+        /&gt;
+        </code>
+                    </pre>
+                    </li>
+                    <li>
+                        Inline styles: don't put styles object into markup. Extract styles into separate variable
+                        or method.
+                        <a href="#accordion23" data-toggle="collapse" aria-expanded="false" aria-controls="accordion23">
+                            Example
+                        </a>
+
+                        <pre id="accordion23" class="collapse" role="tabpanel">
+        <code class="js">
+        // bad
+        &lt;span style={{ marginTop: '35px', padding: '5px' }} /&gt;
+
+        // good
+        const spanStyles = { marginTop: '35px', padding: '5px' };
+        &lt;span style={spanStyles} /&gt;
+
+        // good
+        &lt;span style={this.getSpanStyles()} /&gt;
+        // ...
+        getSpanStyles () {
+            return {
+                marginTop: '35px',
+                padding: '5px'
+            };
+        }
+        </code>
+                    </pre>
+                    </li>
+                    <li>
+                        Don't use long string concatenation for className prop. Use <b>classnames</b> package for that.
+                        <a href="#accordion24" data-toggle="collapse" aria-expanded="false" aria-controls="accordion24">
+                            Example
+                        </a>
+
+                        <pre id="accordion24" class="collapse" role="tabpanel">
+        <code class="js">
+        // bad
+        &lt;div className={'slider ' + this.props.isVisible ? 'show' : ''} /&gt;
+
+        // good
+        import classNames from 'classnames';
+
+        &lt;div className={this.getMainClasses()} /&gt;
+
+        getMainClasses() {
+            return classNames({
+                slider: true,
+                show: this.props.isVisible
+            });
+        }
+        </code>
+                    </pre>
+                    </li>
+                    <li>
+                        Conditional rendering: if you need to render block only if some statements is
+                        true - use <b>&&</b> operator. If you need if-else condition, use Conditional (Ternary)
+                        Operator - <b>?</b>. See examples to understand how to format and indent condition operators.
+                        <a href="#accordion25" data-toggle="collapse" aria-expanded="false" aria-controls="accordion25">
+                            Example
+                        </a>
+
+                        <pre id="accordion25" class="collapse" role="tabpanel">
+        <code class="js">
+        // bad
+        &lt;div&gt;
+            {this.props.isModalVisible ? (
+                &lt;Modal/&gt;
+            ) : null}
+        &lt;/div&gt;
+
+        // good
+        &lt;div&gt;
+            {this.props.isModalVisible &&
+                &lt;Modal/&gt;
+            }
+            {this.props.isLoading ? (
+                &lt;Loader/&gt;
+            ) : (
+                &lt;div&gt;content is loaded&lt;/div&gt;
+            )}
+        &lt;/div&gt;
+        </code>
+                    </pre>
+                    </li>
+                    <li>
+                        If you want to break down your markup into small pieces - extract it to another component,
+                        or extract to another function which starts with <b>render</b>. <em>E.g. this.renderList(),
+                        this.renderHint(), etc.
+                    </em>
+                        <a href="#accordion26" data-toggle="collapse" aria-expanded="false" aria-controls="accordion26">
+                            Example
+                        </a>
+
+                        <pre id="accordion26" class="collapse" role="tabpanel">
+        <code class="js">
+        &lt;div&gt;
+            {this.renderHint()}
+        &lt;/div&gt;
+
+        renderHint () {
+            return (
+                &lt;div className="hint"&gt;
+                    Your Hint!
+                &lt;/div&gt;
+            );
+        }
+        </code>
+                    </pre>
+                    </li>
+                    <li>
+                        If your component doesn't have state, use stateless components!
+                        <a href="#accordion27" data-toggle="collapse" aria-expanded="false" aria-controls="accordion27">
+                            Example
+                        </a>
+
+                        <pre id="accordion27" class="collapse" role="tabpanel">
+        <code class="js">
+        const MyComponent = ({ isModalVisible }) => (
+            &lt;Container&gt;
+                {isModalVisible &&
+                    &lt;Modal/&gt;
+                }
+            &lt;/Container&gt;
+        )
+
+        MyComponent.propTypes = {
+            isModalVisible: PropTypes.bool.isRequired
+        }
+
+        export default MyComponent;
+        </code>
+                    </pre>
+                    </li>
+                    <li>
+                        We are using 2 versions of redux-connect formating. Use one of them, depending on your project.
+                        <a href="#accordion28" data-toggle="collapse" aria-expanded="false" aria-controls="accordion28">
+                            Example
+                        </a>
+
+                        <pre id="accordion28" class="collapse" role="tabpanel">
+        <code class="js">
+        // version 1 - default react formatting + selectors caching
+        import { connect } from 'react-redux'
+        import { bindActionCreators } from 'redux'
+        import { createSelector } from 'reselect'
+        import { selectCommentsList, selectCommentsCount, fetchComments, addComment } from 'redux-modules/comments'
+
+        const mapStateToProps = createSelector(
+            selectCommentsList,
+            selectCommentsCount,
+            (comments, commentsCount) => ({
+                comments,
+                commentsCount,
+            }),
+        )
+
+        const mapDispatchToProps = dispatch =>
+            bindActionCreators(
+                {
+                   fetchComments,
+                   addComment,
+                },
+                dispatch,
+            )
+
+        export default connect(mapStateToProps, mapDispatchToProps)(CommentsListContainer)
+
+        // version 2 - shorthand formatting
+        import { connect } from 'react-redux';
+        import { getSettings, hideAlert } from 'redux/actions/...';
+
+        export default connect(
+            state => ({
+                profile: state.navBar.profile,
+                data: state.productsDB
+            }),
+            {getSettings, hideAlert}
+        )(ProductsDb);
+        </code>
+                    </pre>
+                    </li>
+                    <li>
+                        If you're using Redux, try to use components/containers approach. Put all redux connection logic
+                        into the containers, and pass all data to components via props.
+                    </li>
+                    <li>
+                        Use selectors, to cache all data in redux state. It will help you to avoid unnecessary
+                        re-rendering.
+                        <a href="#accordion29" data-toggle="collapse" aria-expanded="false" aria-controls="accordion29">
+                            Example
+                        </a>
+
+                        <pre id="accordion29" class="collapse" role="tabpanel">
+        <code class="js">
+        import { createSelector } from 'reselect';
+
+        export const selectCommentsState = state => state.comments;
+        export const selectCommentsList = createSelector(selectCommentsState, state => state.commentsList);
+        export const selectIsLoadingComments = createSelector(selectCommentsState, state => state.isLoading);
+
+        const mapStateToProps = createSelector(
+            selectCommentsList,
+            selectIsLoadingComments,
+            (comments, selectIsLoadingComments) => ({
+                comments,
+                isLoading
+            })
+        );
+
+        export default connect(mapStateToProps, null)(CommentsListContainer);
+        </code>
+                    </pre>
+                    </li>
+                    <li>
+                        Don't put everything in redux. Local state is better to keep only in component's state
+                        via <b>setState</b> . <em>E.g. when child component is fetching data (isLoading state), errors
+                        in some local components, isDropdownOpen, etc.</em>
+                    </li>
+                    <li>
+                        We have two types of methods sorting in React. See examples.
+                        <a href="#accordion30" data-toggle="collapse" aria-expanded="false" aria-controls="accordion30">
+                            Example
+                        </a>
+
+                        <pre id="accordion30" class="collapse" role="tabpanel">
+        <code class="js">
+        /*
+            version 1 - default react methods sorting
+        1. componentDidMount and other default react methods
+        2. on-callback methods - <em>onButtonClick, onTextChange, etc</em>
+        3. handle-methods - <em>handleClick, HandleChange, etc</em>
+        4. isMethods - <em>isModalVisible, isLoading, etc</em>
+        5. the rest of methods in alphabet order
+        6. render-like methods - <em>renderHint, renderHeader, etc</em>
+        7. render
+        */
+
+
+        /*
+            version 2 - runtime sorting
+        1. render
+        2. render-like methods - <em>renderHint, renderHeader, etc</em>
+        3. componentDidMount and other default react methods
+        4. isMethods - <em>isModalVisible, isLoading, etc</em>
+        5. the rest of methods in alphabet order
+        6. handle-methods - <em>handleClick, HandleChange, etc</em>
+        7. on-callback methods - <em>onButtonClick, onTextChange, etc</em>
+        */
+        </code>
+                    </pre>
+                    </li>
+                </ol>
+            </article>
         </div>
     </div>
-</nav>
-
-<article>
-    <ol>
-        <li>
-            Whenever you see a bad code, you have to refactor it! You should always leave a better code, then it
-            was before you.
-        </li>
-        <li>
-            Always write (and refactor) code into ES6 style. ES5 is already obsolete! You may use ES5 only for
-            native modules, which are not being compiled by WebPack or etc.
-            <a href="#accordion1" data-toggle="collapse" aria-expanded="false" aria-controls="accordion1">Example</a>
-
-            <pre id="accordion1" class="collapse" role="tabpanel">
-<code class="js">
-// bad
-var x = 3;
-function doubleMe(x) {
-    return x * 2;
-}
-var myClass= {
-    fun: function() {
-        var str = '...';
-        str.toUpperCase();
-    }
-}
-
-// good
-let x = 3;
-const doubleMe = (x) => x * 2;
-export default MyClass {
-    fun() {
-        const str = '...';
-        str.toUpperCase();
-    }
-}
-</code>
-            </pre>
-        </li>
-        <li>
-            Never commit commented out blocks of code, "<b>console.log</b>", "<b>debugger;</b>" and "<b>alert()</b>"!
-            Always remove obsolete and unused variables and lines code. Don't make other team members to do your work
-            instead of you.
-            <a href="#accordion2" data-toggle="collapse" aria-expanded="false" aria-controls="accordion2">Example</a>
-
-            <pre id="accordion2" class="collapse" role="tabpanel">
-<code class="js">
-// never commit this garbage into the repo
-onClick(event) {
-    /*if (event && event.target) {
-        event.target.setAttribute('data-id', '');
-    }*/
-
-    //such lines too:
-    console.log('onClick', event);
-    debugger;
-    alert('Button was clicked!');
-}
-// 'event' variable should also be removed from arguments list, because it will be unused after you remove comments
-</code>
-            </pre>
-        </li>
-        <li>
-            Use should always predict which variables might break your application. Default values must be set for such
-            cases.
-            <a href="#accordion3" data-toggle="collapse" aria-expanded="false" aria-controls="accordion3">Example</a>
-
-            <pre id="accordion3" class="collapse" role="tabpanel">
-<code class="js">
-// bad
-initProperties() {
-    this.mainTitle = this.config.title;
-    let items;
-    if (...) {
-        // some logic that defines array of items
-    }
-}
-onDataGet(result) {
-    this.cardsLength = result.count;
-}
-
-// good
-initProperties() {
-    this.mainTitle = this.config.title || 'Default title';
-    const items = [];
-    if (...) {
-        // your new logic have to push items into existing array, instead of defining a new array
-    }
-}
-onDataGet(result) {
-    this.cardsLength = result.count || 0;
-}
-</code>
-            </pre>
-        </li>
-        <li>
-            Always check suspicious variables and objects before accessing to them. Your application should not be
-            broken because of undefined data.
-            <a href="#accordion4" data-toggle="collapse" aria-expanded="false" aria-controls="accordion4">Example</a>
-
-            <pre id="accordion4" class="collapse" role="tabpanel">
-<code class="js">
-// bad
-parseData(data) {
-    if (data.settings.screen) {
-        //...
-    }
-    data.products[0].name = 'name';
-}
-
-// good
-parseData(data) {
-    if (data.settings && data.settings.screen) {
-        //...
-    }
-    if (data.products && data.products.length) {
-        data.products[0].name = 'name';
-    }
-}
-</code>
-            </pre>
-        </li>
-        <li>
-            Source files should not have any duplicated blocks of code! Put duplicated code into reusable functions.
-        </li>
-        <li>
-            Never exceed the line length limit. Your lines of code should not be longer then 120 symbols. if it's longer
-            - you have to refactor your code.
-            <a href="#accordion5" data-toggle="collapse" aria-expanded="false" aria-controls="accordion5">Example</a>
-
-            <pre id="accordion5" class="collapse" role="tabpanel">
-                <a class="image-preview" href="./images/1.png" target="_blank">
-                    <img style="width:100%; height:auto;" src="./images/1.png"/>
-                </a>
-            </pre>
-        </li>
-        <li>
-            Files should not have too many lines. Maximum authorized lines in a file - 1000. You have to refactor your
-            code, if it contains too many lines.
-        </li>
-        <li>
-            Use "<b>debugger;</b>" instead of console.log(). Use "<b>call stack</b>" in <b>debugger;</b> mode, to find
-            out the chain of functions executions. By using debugger, you can easily track down the unknown behaviour
-            in any code position.
-            <a href="#accordion6" data-toggle="collapse" aria-expanded="false" aria-controls="accordion6">Example</a>
-
-            <pre id="accordion6" class="collapse" role="tabpanel">
-                <a class="image-preview" href="./images/2.png" target="_blank">
-                    <img style="width:100%; height:auto;" src="./images/2.png"/>
-                </a>
-            </pre>
-        </li>
-        <li>
-            Use keyboard shortcuts to collapse/expand the code. It will help you read code faster. Use this feature
-            in your screenshots too, to hide unnecessary information and help other people understand your code.
-            <a href="#accordion7" data-toggle="collapse" aria-expanded="false" aria-controls="accordion7">Example</a>
-
-            <pre id="accordion7" class="collapse" role="tabpanel">
-                <a class="image-preview" href="./images/3.png" target="_blank">
-                    <img style="width:100%; height:auto;" src="./images/3.png"/>
-                </a>
-            </pre>
-        </li>
-        <li>
-            Use external tools for screenshots capture (e.g. <b>Monosnap</b>). It will help you to organize your
-            screenshots: you'll be able to add text or arrows into screenshots, all your screenshots will be stored in
-            the history, and you'll get an external link with screenshot. Use this link to share your screenshots in
-            any chat app.
-            <a href="#accordion8" data-toggle="collapse" aria-expanded="false" aria-controls="accordion8">Example</a>
-
-            <pre id="accordion8" class="collapse" role="tabpanel">
-                <a class="image-preview" href="./images/4.png" target="_blank">
-                    <img style="width:100%; height:auto;" src="./images/4.png"/>
-                </a>
-            </pre>
-        </li>
-    </ol>
-    <h3>jQuery</h3>
-    <ol>
-        <li>
-            Variables and properties that reference DOM elements should start with a dollar sign.
-            <a href="#accordion15" data-toggle="collapse" aria-expanded="false" aria-controls="accordion15">Example</a>
-
-            <pre id="accordion15" class="collapse" role="tabpanel">
-<code class="js">
-// bad
-const playButton = this.$('.play-button');
-this.muteButton = this.$container.find('.mute-button');
-
-// good
-const $playButton = this.$('.play-button');
-this.$muteButton = this.$container.find('.mute-button');
-</code>
-            </pre>
-        </li>
-        <li>
-            Cache your jQuery selectors.
-            <a href="#accordion9" data-toggle="collapse" aria-expanded="false" aria-controls="accordion9">Example</a>
-
-            <pre id="accordion9" class="collapse" role="tabpanel">
-<code class="js">
-// bad
-$('.sidebar').hide();
-$('.sidebar').css({
-    'background-color': 'pink'
-});
-
-// good
-var $sidebar = $('.sidebar');
-$sidebar.hide();
-$sidebar.css({
-    'background-color': 'pink'
-});
-</code>
-            </pre>
-        </li>
-        <li>
-            Instead of lookup in the whole document, search for elements in your module's children. It's much faster.
-            <a href="#accordion10" data-toggle="collapse" aria-expanded="false" aria-controls="accordion10">Example</a>
-
-            <pre id="accordion10" class="collapse" role="tabpanel">
-<code class="js">
-// bad
-$('.play-button').hide();
-
-// good
-this.$container.find('.play-button').hide();
-</code>
-            </pre>
-        </li>
-        <li>
-            Element type selectors should not be used with class selectors.
-            <a href="#accordion11" data-toggle="collapse" aria-expanded="false" aria-controls="accordion11">Example</a>
-
-            <pre id="accordion11" class="collapse" role="tabpanel">
-<code class="js">
-//bad
-var $products = $('div.products');
-
-//good
-var $products = $('.products');
-</code>
-            </pre>
-        </li>
-        <li>
-            "[type=...]" should be used to select elements by type. Otherwise it affects the performance.
-            <a href="#accordion12" data-toggle="collapse" aria-expanded="false" aria-controls="accordion12">Example</a>
-
-            <pre id="accordion12" class="collapse" role="tabpanel">
-<code class="js">
-//bad
-var $input = $('form input:radio');
-
-//good
-var $input = $('form input[type=radio]');
-</code>
-            </pre>
-        </li>
-        <li>
-            "find" should be used to select the children of an element known by id. Otherwise it affects the
-            performance.
-            <a href="#accordion13" data-toggle="collapse" aria-expanded="false" aria-controls="accordion13">Example</a>
-
-            <pre id="accordion13" class="collapse" role="tabpanel">
-<code class="js">
-//bad
-var $productIds = $('#products div.id');
-
-//good
-var $productIds = $('#products').find('.id');
-</code>
-            </pre>
-        </li>
-        <li>
-            Universal selectors should not be used.
-            <a href="#accordion14" data-toggle="collapse" aria-expanded="false" aria-controls="accordion14">Example</a>
-
-            <pre id="accordion14" class="collapse" role="tabpanel">
-<code class="js">
-//bad. extremely expensive
-$('.buttons > *');
-
-//good
-$('.buttons').children();
-</code>
-            </pre>
-        </li>
-        <li>
-            Deprecated jQuery methods should not be used
-            <a href="#accordion31" data-toggle="collapse" aria-expanded="false" aria-controls="accordion31">Example</a>
-            <pre id="accordion31" class="collapse" role="tabpanel">
-<code class="js">
-.andSelf() .context .die() .error() jQuery.boxModel jQuery.browser jQuery.sub() jQuery.support .live() .load()
-.selector .size() .toggle() .unload()
-</code>
-            </pre>
-        </li>
-    </ol>
-    <h3>Angular</h3>
-    <ol>
-        <li>
-            Always set types for your variables. Never use "any" type.
-            <a href="#accordion16" data-toggle="collapse" aria-expanded="false" aria-controls="accordion16">Example</a>
-
-            <pre id="accordion16" class="collapse" role="tabpanel">
-<code class="js">
-// bad
-export class MyComponent {
-
-    @Input() type;
-    public apps: any[];
-    public currentApp = {};
-    public isHidden = true;
-
-    setCategories(apps: any) {
-        // ...
-    }
-}
-
-// good
-export class MyComponent {
-
-    @Input() type: string;
-    public apps: App[];
-    public currentApp: App = {};
-    public isHidden: boolean = true;
-
-    setCategories(apps: App[]): void {
-        // ...
-    }
-}
-</code>
-            </pre>
-        </li>
-        <li>
-            Variables, properties and functions which contain Observable, should end with $ sign.
-            <a href="#accordion17" data-toggle="collapse" aria-expanded="false" aria-controls="accordion17">Example</a>
-
-            <pre id="accordion17" class="collapse" role="tabpanel">
-<code class="js">
-// bad
-store(storeName: string): Observable<Storage> {
-    const storeSubject = `${storeName}Subject`;
-    if (!this[storeSubject]) {
-      this[storeSubject] = new Subject<Storage>();
-    }
-    return this[storeSubject].asObservable();
-}
-const myObservable = this.store('user1');
-
-// good
-store$(storeName: string): Observable<Storage> {
-    const storeSubject = `${storeName}Subject`;
-    if (!this[storeSubject]) {
-      this[storeSubject] = new Subject<Storage>();
-    }
-    return this[storeSubject].asObservable();
-}
-const myObservable$ = this.store$('user1');
-</code>
-            </pre>
-        </li>
-    </ol>
-    <h3>React</h3>
-    <ol>
-        <li>
-            Always use <b>propTypes</b>! Even when component doesn't have any props! Put callbacks at the very bottom
-            of propTypes list! Use defaultProps for not required properties.
-            <a href="#accordion18" data-toggle="collapse" aria-expanded="false" aria-controls="accordion18">Example</a>
-
-            <pre id="accordion18" class="collapse" role="tabpanel">
-<code class="js">
-// good
-MyComponent.propTypes = {
-    isVisible: PropTypes.bool,
-    type: PropTypes.oneOf(['News', 'Photos']).isRequired,
-    options: PropTypes.shape({
-        color: PropTypes.string,
-        fontSize: PropTypes.number
-    }),
-    onClick: PropTypes.func.isRequired,
-    onHide: PropTypes.func.isRequired
-};
-
-MyComponent.defaultProps = {
-    isVisible: false,
-    options: {
-        color: '#000',
-        fontSize: '12px'
-    }
-}
-
-// when component doesn't have props, use empty object
-MyComponent2.propTypes = {}
-</code>
-            </pre>
-        </li>
-        <li>
-            Don't use <b>any</b>, <b>object</b>, <b>array</b> in PropTypes. Use <b>shape</b> and <b>arrayOf</b> instead!
-            <a href="#accordion19" data-toggle="collapse" aria-expanded="false" aria-controls="accordion19">Example</a>
-
-            <pre id="accordion19" class="collapse" role="tabpanel">
-<code class="js">
-// bad
-MyComponent.propTypes = {
-    isVisible: PropTypes.any.isRequired,
-    user: PropTypes.object.isRequired,
-    values: PropTypes.array.isRequired
-};
-
-// good
-MyComponent.propTypes = {
-    isVisible: PropTypes.bool.isRequired,
-    user: PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        age: PropTypes.number.isRequired,
-        email: PropTypes.string.isRequired
-    }).isRequired,
-    values: PropTypes.arrayOf(PropTypes.number).isRequired
-};
-</code>
-            </pre>
-        </li>
-        <li>
-            Callbacks naming: use "<b>handle</b>SomethingClick" for local methods, use "<b>on</b>SomethingClick" for
-            props callbacks.
-            <a href="#accordion20" data-toggle="collapse" aria-expanded="false" aria-controls="accordion20">Example</a>
-
-            <pre id="accordion20" class="collapse" role="tabpanel">
-<code class="js">
-&lt;AvatarEditor
-    name="profile"
-    onClick={this.handleAvatarClick}
-/&gt;
-</code>
-            </pre>
-        </li>
-        <li>
-            Props indentation: short component with props should be placed into one line, for lots of props, each prop
-            should be placed into separate line. See example.
-            <a href="#accordion21" data-toggle="collapse" aria-expanded="false" aria-controls="accordion21">Example</a>
-
-            <pre id="accordion21" class="collapse" role="tabpanel">
-<code class="js">
-// small amount of props
-&lt;AvatarEditor ref={this.setEditorRef} image={this.state.image} /&gt;
-
-// a lot of props
-&lt;AvatarEditor
-    ref={this.setEditorRef}
-    image={this.state.image}
-    width={this.state.width}
-    height={this.state.height}
-    position={this.state.position}
-    borderRadius={this.state.borderRadius}
-    color={[0, 0, 0, 0.7]}
-    scale={parseFloat(this.state.scale)}
-    rotate={parseFloat(this.state.rotate)}
-    onPositionChange={this.handlePositionChange}
-/&gt;
-</code>
-            </pre>
-        </li>
-        <li>
-            Quotes in props: use double quotes for all string props without curly braces. In curly braces, use single
-            quotes. See example.
-            <a href="#accordion22" data-toggle="collapse" aria-expanded="false" aria-controls="accordion22">Example</a>
-
-            <pre id="accordion22" class="collapse" role="tabpanel">
-<code class="js">
-&lt;MyComponent
-    name="best component"
-    version={'version #' + item.version}
-/&gt;
-</code>
-            </pre>
-        </li>
-        <li>
-            Inline styles: don't put styles object into markup. Extract styles into separate variable or method.
-            <a href="#accordion23" data-toggle="collapse" aria-expanded="false" aria-controls="accordion23">Example</a>
-
-            <pre id="accordion23" class="collapse" role="tabpanel">
-<code class="js">
-// bad
-&lt;span style={{ marginTop: '35px', padding: '5px' }} /&gt;
-
-// good
-const spanStyles = { marginTop: '35px', padding: '5px' };
-&lt;span style={spanStyles} /&gt;
-
-// good
-&lt;span style={this.getSpanStyles()} /&gt;
-// ...
-getSpanStyles () {
-    return {
-        marginTop: '35px',
-        padding: '5px'
-    };
-}
-</code>
-            </pre>
-        </li>
-        <li>
-            Don't use long string concatenation for className prop. Use <b>classnames</b> package for that.
-            <a href="#accordion24" data-toggle="collapse" aria-expanded="false" aria-controls="accordion24">Example</a>
-
-            <pre id="accordion24" class="collapse" role="tabpanel">
-<code class="js">
-// bad
-&lt;div className={'slider ' + this.props.isVisible ? 'show' : ''} /&gt;
-
-// good
-import classNames from 'classnames';
-
-&lt;div className={this.getMainClasses()} /&gt;
-
-getMainClasses() {
-    return classNames({
-        slider: true,
-        show: this.props.isVisible
-    });
-}
-</code>
-            </pre>
-        </li>
-        <li>
-            Conditional rendering: if you need to render block only if some statements is true - use <b>&&</b> operator.
-            If you need if-else condition, use Conditional (Ternary) Operator - <b>?</b>. See examples to understand
-            how to format and indent condition operators.
-            <a href="#accordion25" data-toggle="collapse" aria-expanded="false" aria-controls="accordion25">Example</a>
-
-            <pre id="accordion25" class="collapse" role="tabpanel">
-<code class="js">
-// bad
-&lt;div&gt;
-    {this.props.isModalVisible ? (
-        &lt;Modal/&gt;
-    ) : null}
-&lt;/div&gt;
-
-// good
-&lt;div&gt;
-    {this.props.isModalVisible &&
-        &lt;Modal/&gt;
-    }
-    {this.props.isLoading ? (
-        &lt;Loader/&gt;
-    ) : (
-        &lt;div&gt;content is loaded&lt;/div&gt;
-    )}
-&lt;/div&gt;
-</code>
-            </pre>
-        </li>
-        <li>
-            If you want to break down your markup into small pieces - extract it to another component, or extract
-            to another function which starts with <b>render</b>. <em>E.g. this.renderList(), this.renderHint(), etc.
-        </em>
-            <a href="#accordion26" data-toggle="collapse" aria-expanded="false" aria-controls="accordion26">Example</a>
-
-            <pre id="accordion26" class="collapse" role="tabpanel">
-<code class="js">
-&lt;div&gt;
-    {this.renderHint()}
-&lt;/div&gt;
-
-renderHint () {
-    return (
-        &lt;div className="hint"&gt;
-            Your Hint!
-        &lt;/div&gt;
-    );
-}
-</code>
-            </pre>
-        </li>
-        <li>
-            If your component doesn't have state, use stateless components!
-            <a href="#accordion27" data-toggle="collapse" aria-expanded="false" aria-controls="accordion27">Example</a>
-
-            <pre id="accordion27" class="collapse" role="tabpanel">
-<code class="js">
-const MyComponent = ({ isModalVisible }) => (
-    &lt;Container&gt;
-        {isModalVisible &&
-            &lt;Modal/&gt;
-        }
-    &lt;/Container&gt;
-)
-
-MyComponent.propTypes = {
-    isModalVisible: PropTypes.bool.isRequired
-}
-
-export default MyComponent;
-</code>
-            </pre>
-        </li>
-        <li>
-            We are using 2 versions of redux-connect formating. Use one of them, depending on your project.
-            <a href="#accordion28" data-toggle="collapse" aria-expanded="false" aria-controls="accordion28">Example</a>
-
-            <pre id="accordion28" class="collapse" role="tabpanel">
-<code class="js">
-// version 1 - default react formatting + selectors caching
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { createSelector } from 'reselect'
-import { selectCommentsList, selectCommentsCount, fetchComments, addComment } from 'redux-modules/comments'
-
-const mapStateToProps = createSelector(
-    selectCommentsList,
-    selectCommentsCount,
-    (comments, commentsCount) => ({
-        comments,
-        commentsCount,
-    }),
-)
-
-const mapDispatchToProps = dispatch =>
-    bindActionCreators(
-        {
-           fetchComments,
-           addComment,
-        },
-        dispatch,
-    )
-
-export default connect(mapStateToProps, mapDispatchToProps)(CommentsListContainer)
-
-// version 2 - shorthand formatting
-import { connect } from 'react-redux';
-import { getSettings, hideAlert } from 'redux/actions/...';
-
-export default connect(
-    state => ({
-        profile: state.navBar.profile,
-        data: state.productsDB
-    }),
-    {getSettings, hideAlert}
-)(ProductsDb);
-</code>
-            </pre>
-        </li>
-        <li>
-            If you're using Redux, try to use components/containers approach. Put all redux connection logic into the
-            containers, and pass all data to components via props.
-        </li>
-        <li>
-            Use selectors, to cache all data in redux state. It will help you to avoid unnecessary re-rendering.
-            <a href="#accordion29" data-toggle="collapse" aria-expanded="false" aria-controls="accordion29">Example</a>
-
-            <pre id="accordion29" class="collapse" role="tabpanel">
-<code class="js">
-import { createSelector } from 'reselect';
-
-export const selectCommentsState = state => state.comments;
-export const selectCommentsList = createSelector(selectCommentsState, state => state.commentsList);
-export const selectIsLoadingComments = createSelector(selectCommentsState, state => state.isLoading);
-
-const mapStateToProps = createSelector(
-    selectCommentsList,
-    selectIsLoadingComments,
-    (comments, selectIsLoadingComments) => ({
-        comments,
-        isLoading
-    })
-);
-
-export default connect(mapStateToProps, null)(CommentsListContainer);
-</code>
-            </pre>
-        </li>
-        <li>
-            Don't put everything in redux. Local state is better to keep only in component's state via <b>setState</b>
-            . <em>E.g. when child component is fetching data (isLoading state), errors in some local components,
-            isDropdownOpen, etc.</em>
-        </li>
-        <li>
-            We have two types of methods sorting in React. See examples.
-            <a href="#accordion30" data-toggle="collapse" aria-expanded="false" aria-controls="accordion30">Example</a>
-
-            <pre id="accordion30" class="collapse" role="tabpanel">
-<code class="js">
-/*
-    version 1 - default react methods sorting
-1. componentDidMount and other default react methods
-2. on-callback methods - <em>onButtonClick, onTextChange, etc</em>
-3. handle-methods - <em>handleClick, HandleChange, etc</em>
-4. isMethods - <em>isModalVisible, isLoading, etc</em>
-5. the rest of methods in alphabet order
-6. render-like methods - <em>renderHint, renderHeader, etc</em>
-7. render
-*/
-
-
-/*
-    version 2 - runtime sorting
-1. render
-2. render-like methods - <em>renderHint, renderHeader, etc</em>
-3. componentDidMount and other default react methods
-4. isMethods - <em>isModalVisible, isLoading, etc</em>
-5. the rest of methods in alphabet order
-6. handle-methods - <em>handleClick, HandleChange, etc</em>
-7. on-callback methods - <em>onButtonClick, onTextChange, etc</em>
-*/
-</code>
-            </pre>
-        </li>
-    </ol>
-</article>
-
 <script src="./vendor/jquery-3.2.1.slim.min.js"></script>
 <script src="./vendor/bootstrap/popper.min.js"></script>
 <script src="./vendor/bootstrap/bootstrap.min.js"></script>
 <script src="./vendor/highlight/highlight.min.js"></script>
 <script>hljs && hljs.initHighlightingOnLoad();</script>
+<script>
+    $(document).ready(function () {
+
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+        });
+
+    });
+</script>
 </body>
 </html>

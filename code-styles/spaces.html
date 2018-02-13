@@ -10,37 +10,75 @@
     <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
-
-<nav class="navbar fixed-top navbar-light bg-light">
-    <a class="navbar-brand" href="javascript:void(0);">Spaces and code formating</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"
-    >
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-            <a class="nav-item nav-link" href="./">Best practices</a>
-            <a class="nav-item nav-link" href="./vars.html">Variables Declarations</a>
-            <a class="nav-item nav-link" href="./funcs.html">Functions Declarations</a>
-            <a class="nav-item nav-link" href="./if-else.html">Conditional Blocks</a>
-            <a class="nav-item nav-link" href="./classes.html">Classes and Modules</a>
+<div class="wrapper">
+    <nav id="sidebar" class="active">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header">
+            <h3>Spaces and code formating</h3>
+            <strong>S&F</strong>
         </div>
-    </div>
-</nav>
 
-<article>
-    <ol>
-        <li>
-            Use 4 spaces instead of tabs. Configure your IDE to always use 4 spaces in every language. PhpStorm uses 2
-            tabs in some languages (CSS, Less, JSON), make sure that you've set 4 spaces for that languages
-            (Preferences - Editor - Code Style).
-        </li>
-        <li>
-            Place 1 space before the leading brace
-            <a href="#accordion1" data-toggle="collapse" aria-expanded="false" aria-controls="accordion1">Example</a>
+        <!-- Sidebar Links -->
+        <ul class="list-unstyled components">
+            <li class="active">
+                <a href="index.html">
+                    <span class="categoryPreview">1</span>
+                    <p>Best Practices</p>
+                </a>
+            </li>
+            <li class="active">
+                <a href="spaces.html">
+                    <span class="categoryPreview">2</span>
+                    <p>Spaces and code formating</p>
+                </a>
+            </li>
+            <li>
+                <a href="vars.html">
+                    <span class="categoryPreview">3</span>
+                    <p>Variables Declarations</p>
+                </a>
+            </li>
+            <li>
+                <a href="funcs.html">
+                    <span class="categoryPreview">4</span>
+                    <p>Functions Declarations</p>
+                </a>
+            </li>
+            <li>
+                <a href="if-else.html">
+                    <span class="categoryPreview">5</span>
+                    <p>Conditional Blocks</p>
+                </a>
+            </li>
+            <li>
+                <a href="classes.html">
+                    <span class="categoryPreview">6</span>
+                    <p>Classes and Modules</p>
+                </a>
+            </li>
+        </ul>
+        <button type="button" id="sidebarCollapse">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+    <div id="content">
+        <article>
+            <h3>Spaces and code formating</h3>
+            <ol>
+                <li>
+                    Use 4 spaces instead of tabs. Configure your IDE to always use 4 spaces in every language. PhpStorm
+                    uses 2 tabs in some languages (CSS, Less, JSON), make sure that you've set 4 spaces for that
+                    languages (Preferences - Editor - Code Style).
+                </li>
+                <li>
+                    Place 1 space before the leading brace
+                    <a href="#accordion1" data-toggle="collapse" aria-expanded="false" aria-controls="accordion1">
+                        Example
+                    </a>
 
-            <pre id="accordion1" class="collapse" role="tabpanel">
+                    <pre id="accordion1" class="collapse" role="tabpanel">
 <code class="js">
 // bad
 function test(){
@@ -67,14 +105,16 @@ dog.set('attr', {
 });
 </code>
             </pre>
-        </li>
-        <li>
-            Place 1 space before the opening parenthesis in control statements (if, while, etc.). Place no space
-            before the argument list in function calls and declarations. Place one space before the argument list in
-            anonymous function declarations.
-            <a href="#accordion2" data-toggle="collapse" aria-expanded="false" aria-controls="accordion2">Example</a>
+                </li>
+                <li>
+                    Place 1 space before the opening parenthesis in control statements (if, while, etc.). Place no space
+                    before the argument list in function calls and declarations. Place one space before the argument
+                    list in anonymous function declarations.
+                    <a href="#accordion2" data-toggle="collapse" aria-expanded="false" aria-controls="accordion2">
+                        Example
+                    </a>
 
-            <pre id="accordion2" class="collapse" role="tabpanel">
+                    <pre id="accordion2" class="collapse" role="tabpanel">
 <code class="js">
 // bad
 if(isJedi) {
@@ -117,12 +157,14 @@ const fight = () => {
 }
 </code>
             </pre>
-        </li>
-        <li>
-            Set off operators with spaces.
-            <a href="#accordion3" data-toggle="collapse" aria-expanded="false" aria-controls="accordion3">Example</a>
+                </li>
+                <li>
+                    Set off operators with spaces.
+                    <a href="#accordion3" data-toggle="collapse" aria-expanded="false" aria-controls="accordion3">
+                        Example
+                    </a>
 
-            <pre id="accordion3" class="collapse" role="tabpanel">
+                    <pre id="accordion3" class="collapse" role="tabpanel">
 <code class="js">
 // bad
 const x=y+5;
@@ -131,14 +173,16 @@ const x=y+5;
 const x = y + 5;
 </code>
             </pre>
-        </li>
+                </li>
 
-        <li>
-            Use indentation when making long method chains. Use a leading dot, which emphasizes that the line is a
-            method call, not a new statement.
-            <a href="#accordion5" data-toggle="collapse" aria-expanded="false" aria-controls="accordion5">Example</a>
+                <li>
+                    Use indentation when making long method chains. Use a leading dot, which emphasizes that the line
+                    is a method call, not a new statement.
+                    <a href="#accordion5" data-toggle="collapse" aria-expanded="false" aria-controls="accordion5">
+                        Example
+                    </a>
 
-            <pre id="accordion5" class="collapse" role="tabpanel">
+                    <pre id="accordion5" class="collapse" role="tabpanel">
 <code class="js">
 // bad
 $('#items').find('.selected').highlight().end().find('.open').updateCount();
@@ -149,12 +193,14 @@ $('#items')
     .find('.open').updateCount();
 </code>
             </pre>
-        </li>
-        <li>
-            Leading commas: Nope.
-            <a href="#accordion6" data-toggle="collapse" aria-expanded="false" aria-controls="accordion6">Example</a>
+                </li>
+                <li>
+                    Leading commas: Nope.
+                    <a href="#accordion6" data-toggle="collapse" aria-expanded="false" aria-controls="accordion6">
+                        Example
+                    </a>
 
-            <pre id="accordion6" class="collapse" role="tabpanel">
+                    <pre id="accordion6" class="collapse" role="tabpanel">
 <code class="js">
 // bad
 const story = [
@@ -171,12 +217,14 @@ const story = [
 ];
 </code>
             </pre>
-        </li>
-        <li>
-            Additional trailing comma: Nope.
-            <a href="#accordion7" data-toggle="collapse" aria-expanded="false" aria-controls="accordion7">Example</a>
+                </li>
+                <li>
+                    Additional trailing comma: Nope.
+                    <a href="#accordion7" data-toggle="collapse" aria-expanded="false" aria-controls="accordion7">
+                        Example
+                    </a>
 
-            <pre id="accordion7" class="collapse" role="tabpanel">
+                    <pre id="accordion7" class="collapse" role="tabpanel">
 <code class="js">
 // bad
 const hero = {
@@ -191,12 +239,14 @@ const hero = {
 };
 </code>
             </pre>
-        </li>
-        <li>
-            Semicolons are mandatory
-            <a href="#accordion8" data-toggle="collapse" aria-expanded="false" aria-controls="accordion8">Example</a>
+                </li>
+                <li>
+                    Semicolons are mandatory
+                    <a href="#accordion8" data-toggle="collapse" aria-expanded="false" aria-controls="accordion8">
+                        Example
+                    </a>
 
-            <pre id="accordion8" class="collapse" role="tabpanel">
+                    <pre id="accordion8" class="collapse" role="tabpanel">
 <code class="js">
 // bad
 const $block = this.$element.find('.block')
@@ -207,12 +257,14 @@ const $block = this.$element.find('.block');
 $block.css('border', '1px solid #ccc');
 </code>
             </pre>
-        </li>
-        <li>
-            Useless parentheses around expressions should be removed to prevent any misunderstanding
-            <a href="#accordion9" data-toggle="collapse" aria-expanded="false" aria-controls="accordion9">Example</a>
+                </li>
+                <li>
+                    Useless parentheses around expressions should be removed to prevent any misunderstanding
+                    <a href="#accordion9" data-toggle="collapse" aria-expanded="false" aria-controls="accordion9">
+                        Example
+                    </a>
 
-            <pre id="accordion9" class="collapse" role="tabpanel">
+                    <pre id="accordion9" class="collapse" role="tabpanel">
 <code class="js">
 // bad
 return (x);
@@ -229,12 +281,14 @@ const x = y / 2 + 1;
 const func = n => n * 2;
 </code>
             </pre>
-        </li>
-        <li>
-            Perform type coercion at the beginning of the statement
-            <a href="#accordion10" data-toggle="collapse" aria-expanded="false" aria-controls="accordion10">Example</a>
+                </li>
+                <li>
+                    Perform type coercion at the beginning of the statement
+                    <a href="#accordion10" data-toggle="collapse" aria-expanded="false" aria-controls="accordion10">
+                        Example
+                    </a>
 
-            <pre id="accordion10" class="collapse" role="tabpanel">
+                    <pre id="accordion10" class="collapse" role="tabpanel">
 <code class="js">
 // bad
 const totalScore = this.reviewScore + '';
@@ -249,12 +303,14 @@ const totalScore = '' + this.reviewScore + ' total score';
 const totalScore = this.reviewScore + ' total score';
 </code>
             </pre>
-        </li>
-        <li>
-            Use parseInt for Numbers and always with a radix for type casting
-            <a href="#accordion11" data-toggle="collapse" aria-expanded="false" aria-controls="accordion11">Example</a>
+                </li>
+                <li>
+                    Use parseInt for Numbers and always with a radix for type casting
+                    <a href="#accordion11" data-toggle="collapse" aria-expanded="false" aria-controls="accordion11">
+                        Example
+                    </a>
 
-            <pre id="accordion11" class="collapse" role="tabpanel">
+                    <pre id="accordion11" class="collapse" role="tabpanel">
 <code class="js">
 const inputValue = '4';
 
@@ -277,12 +333,14 @@ const val = Number(inputValue);
 const val = parseInt(inputValue, 10);
 </code>
             </pre>
-        </li>
-        <li>
-            Booleans:
-            <a href="#accordion12" data-toggle="collapse" aria-expanded="false" aria-controls="accordion12">Example</a>
+                </li>
+                <li>
+                    Booleans:
+                    <a href="#accordion12" data-toggle="collapse" aria-expanded="false" aria-controls="accordion12">
+                        Example
+                    </a>
 
-            <pre id="accordion12" class="collapse" role="tabpanel">
+                    <pre id="accordion12" class="collapse" role="tabpanel">
 <code class="js">
 const age = 0;
 
@@ -296,12 +354,14 @@ const hasAge = Boolean(age);
 const hasAge = !!age;
 </code>
             </pre>
-        </li>
-        <li>
-            Use dot notation when accessing properties
-            <a href="#accordion13" data-toggle="collapse" aria-expanded="false" aria-controls="accordion13">Example</a>
+                </li>
+                <li>
+                    Use dot notation when accessing properties
+                    <a href="#accordion13" data-toggle="collapse" aria-expanded="false" aria-controls="accordion13">
+                        Example
+                    </a>
 
-            <pre id="accordion13" class="collapse" role="tabpanel">
+                    <pre id="accordion13" class="collapse" role="tabpanel">
 <code class="js">
 const luke = {
     jedi: true,
@@ -315,12 +375,14 @@ const isJedi = luke['jedi'];
 const isJedi = luke.jedi;
 </code>
             </pre>
-        </li>
-        <li>
-            Use subscript notation [] when accessing properties with a variable or a property with underscore
-            <a href="#accordion14" data-toggle="collapse" aria-expanded="false" aria-controls="accordion14">Example</a>
+                </li>
+                <li>
+                    Use subscript notation [] when accessing properties with a variable or a property with underscore
+                    <a href="#accordion14" data-toggle="collapse" aria-expanded="false" aria-controls="accordion14">
+                        Example
+                    </a>
 
-            <pre id="accordion14" class="collapse" role="tabpanel">
+                    <pre id="accordion14" class="collapse" role="tabpanel">
 <code class="js">
 const luke = {
     jedi: true,
@@ -336,16 +398,18 @@ const isJedi = getProp('jedi');
 const isEvil = luke['is_evil'];
 </code>
             </pre>
-        </li>
-        <li>
-            Try to avoid comments in your code. Your code should be readable without comments! Delete comments
-            wherever it possible!
-        </li>
-        <li>
-            Use only /** ... */ for multi-line comments. Don't use // for multi-line comments!
-            <a href="#accordion15" data-toggle="collapse" aria-expanded="false" aria-controls="accordion15">Example</a>
+                </li>
+                <li>
+                    Try to avoid comments in your code. Your code should be readable without comments! Delete comments
+                    wherever it possible!
+                </li>
+                <li>
+                    Use only /** ... */ for multi-line comments. Don't use // for multi-line comments!
+                    <a href="#accordion15" data-toggle="collapse" aria-expanded="false" aria-controls="accordion15">
+                        Example
+                    </a>
 
-            <pre id="accordion15" class="collapse" role="tabpanel">
+                    <pre id="accordion15" class="collapse" role="tabpanel">
 <code class="js">
 // bad
 // make() returns a new element
@@ -358,12 +422,14 @@ const isEvil = luke['is_evil'];
  */
 </code>
             </pre>
-        </li>
-        <li>
-            Use // for single line comments. Use a new line for every comment. Don't use inline comments!
-            <a href="#accordion16" data-toggle="collapse" aria-expanded="false" aria-controls="accordion16">Example</a>
+                </li>
+                <li>
+                    Use // for single line comments. Use a new line for every comment. Don't use inline comments!
+                    <a href="#accordion16" data-toggle="collapse" aria-expanded="false" aria-controls="accordion16">
+                        Example
+                    </a>
 
-            <pre id="accordion16" class="collapse" role="tabpanel">
+                    <pre id="accordion16" class="collapse" role="tabpanel">
 <code class="js">
 // bad
 const active = true;  // is current tab
@@ -380,14 +446,24 @@ const getType = () => {
 }
 </code>
             </pre>
-        </li>
-    </ol>
-</article>
-
+                </li>
+            </ol>
+        </article>
+    </div>
+</div>
 <script src="./vendor/jquery-3.2.1.slim.min.js"></script>
 <script src="./vendor/bootstrap/popper.min.js"></script>
 <script src="./vendor/bootstrap/bootstrap.min.js"></script>
 <script src="./vendor/highlight/highlight.min.js"></script>
 <script>hljs && hljs.initHighlightingOnLoad();</script>
+<script>
+    $(document).ready(function () {
+
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+        });
+
+    });
+</script>
 </body>
 </html>
