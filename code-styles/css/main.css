@@ -71,6 +71,7 @@ a.image-preview, a.image-preview:hover {
 }
 
 .sidebar-header h3 {
+    font-size: 1.2rem;
     padding: 10px 10px;
 }
 
@@ -120,6 +121,10 @@ a.image-preview, a.image-preview:hover {
 
 #sidebar ul li a p {
     display: inline-block;
+}
+
+#sidebar ul li a p.highlighted {
+    color: #000;
 }
 
 #sidebar.active ul li a {
