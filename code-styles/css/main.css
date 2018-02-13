@@ -92,6 +92,10 @@ a.image-preview, a.image-preview:hover {
     align-items: center;
 }
 
+#sidebar.active ul li.highlighted a {
+    background-color: rgba(0, 0, 0, .1);
+}
+
 #sidebar.active ul li a {
     display: flex;
     justify-content: center;
