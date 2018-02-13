@@ -265,6 +265,98 @@ if (x !== undefined && x === 2) {
 }
 </code>
             </pre>
+        </li>
+        <li>
+            When you have if-else statement, don't use negative condition as first block
+            <a href="#accordion9" data-toggle="collapse" aria-expanded="false" aria-controls="accordion9">Example</a>
+            <pre id="accordion9" class="collapse" role="tabpanel">
+<code class="js">
+//bad
+if (!hasItems) {
+    // negative block
+} else {
+    // positive block
+}
+
+//good
+if (hasItems) {
+    // positive block
+} else {
+    // negative block
+}
+</code>
+            </pre>
+        </li>
+        <li>
+            You can use ternary operator, but only when you need to return a statement. Don't use it instead of if-else
+            <a href="#accordion10" data-toggle="collapse" aria-expanded="false" aria-controls="accordion10">Example</a>
+            <pre id="accordion10" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+hasItems ?
+    this.updateItems():
+    this.getItems();
+
+let title;
+if (hasItems) {
+    title = 'has items';
+} else {
+    title = 'no items';
+}
+
+// good
+if (hasItems) {
+    this.updateItems():
+} else {
+    this.getItems
+}
+const title = hasItems ? 'has items' : 'no items';
+</code>
+            </pre>
+        </li>
+        <li>
+            You should always use curly braces in if statements. curly braces can be omitted only when you have a short,
+            1-line if.
+            <a href="#accordion11" data-toggle="collapse" aria-expanded="false" aria-controls="accordion11">Example</a>
+            <pre id="accordion11" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+if (hasItems) this.updateItems():
+else this.getItems();
+
+// good
+if (hasItems) {
+    this.updateItems():
+} else {
+    this.getItems
+}
+
+// good
+if (hasItems) return this.items;
+if (hasItems) {
+    return this.items;
+}
+</code>
+            </pre>
+        </li>
+        <li>
+            You should refactor complex if statements, to make it more readable
+            <a href="#accordion12" data-toggle="collapse" aria-expanded="false" aria-controls="accordion12">Example</a>
+            <pre id="accordion12" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+if (this.items.length && this.state.isVisible && !(this.props.isLoading || this.items === null)) {
+    this.showHint();
+}
+
+// good
+const hasItems = this.items.length && this.state.isVisible;
+const isLoading = this.props.isLoading || this.items === null;
+if (hasItems && !isLoading) {
+    this.showHint();
+}
+</code>
+            </pre>
                 </li>
             </ol>
         </article>

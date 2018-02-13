@@ -464,6 +464,87 @@
         </code>
                     </pre>
                     </li>
+                    <li>
+                        Use <b>Augury</b> Chrome extension to debug your angular code.
+                    </li>
+                    <li>
+                        Try to avoid of using <b>ngDoCheck</b> and <b>ngOnChanges</b> whenever it possible. It slows your app a lot!
+                    </li>
+                    <li>
+                        Don't put any logic inside your html-templates. It should be inside your ts-components.
+                    </li>
+                    <li>
+                        Don't put your logic inside constructors. Constructor should call for another methods, not to operate with
+                        logic.
+                        <a href="#accordion32" data-toggle="collapse" aria-expanded="false" aria-controls="accordion32">Example</a>
+
+                        <pre id="accordion32" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+export class MyComponent {
+
+    constructor(private appService: AppService) {
+        if (this.form.valid) {
+            this.resetErrors();
+            this.showApp(appService);
+        }
+    }
+
+}
+
+// good
+export class MyComponent {
+
+    constructor(private appService: AppService) {
+        this.validateFrom(appService);
+    }
+
+    private validateFrom(appService: AppService): null {
+        if (this.form.valid) {
+            this.resetErrors();
+            this.showApp(appService);
+        }
+    }
+
+}
+</code>
+            </pre>
+                    </li>
+                    <li>
+                        Always unsubscribe from Observable in ngOnDestroy. Otherwise, the consequences may be very bad. It is
+                        almost impossible to find a problem afterwards.
+                    </li>
+                    <li>
+                        Do not use private properties in your html templates. Otherwise, you might have problems with AOT compiling.
+                        <a href="#accordion33" data-toggle="collapse" aria-expanded="false" aria-controls="accordion33">Example</a>
+
+                        <pre id="accordion33" class="collapse" role="tabpanel">
+<code class="js">
+// in progress
+</code>
+            </pre>
+                    </li>
+                    <li>
+                        If you need to <b>addEventListener</b>, use <b>Observable.fromEvent</b>. It works the same.
+                        <a href="#accordion34" data-toggle="collapse" aria-expanded="false" aria-controls="accordion34">Example</a>
+
+                        <pre id="accordion34" class="collapse" role="tabpanel">
+<code class="js">
+// in progress
+</code>
+            </pre>
+                    </li>
+                    <li>
+                        Build your structure with smart and dumb components. Dumb component should use onPush strategy and
+                        Input set.
+                        <a href="#accordion35" data-toggle="collapse" aria-expanded="false" aria-controls="accordion35">Example</a>
+
+                        <pre id="accordion35" class="collapse" role="tabpanel">
+<code class="js">
+// in progress
+</code>
+            </pre>
+                    </li>
                 </ol>
                 <h3>React</h3>
                 <ol>
@@ -828,23 +909,26 @@
         */
 
 
-        /*
-            version 2 - runtime sorting
-        1. render
-        2. render-like methods - <em>renderHint, renderHeader, etc</em>
-        3. componentDidMount and other default react methods
-        4. isMethods - <em>isModalVisible, isLoading, etc</em>
-        5. the rest of methods in alphabet order
-        6. handle-methods - <em>handleClick, HandleChange, etc</em>
-        7. on-callback methods - <em>onButtonClick, onTextChange, etc</em>
-        */
-        </code>
-                    </pre>
-                    </li>
-                </ol>
-            </article>
-        </div>
-    </div>
+/*
+    version 2 - runtime sorting
+1. render
+2. render-like methods - <em>renderHint, renderHeader, etc</em>
+3. componentDidMount and other default react methods
+4. isMethods - <em>isModalVisible, isLoading, etc</em>
+5. the rest of methods in alphabet order
+6. handle-methods - <em>handleClick, HandleChange, etc</em>
+7. on-callback methods - <em>onButtonClick, onTextChange, etc</em>
+*/
+</code>
+            </pre>
+        </li>
+        <li>
+            JSX files should have the same name and the same case as a class inside them. e.g. - Search.jsx,
+            ModalEdit.jsx, etc
+        </li>
+    </ol>
+</article>
+
 <script src="./vendor/jquery-3.2.1.slim.min.js"></script>
 <script src="./vendor/bootstrap/popper.min.js"></script>
 <script src="./vendor/bootstrap/bootstrap.min.js"></script>

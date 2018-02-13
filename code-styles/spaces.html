@@ -174,7 +174,38 @@ const x = y + 5;
 </code>
             </pre>
                 </li>
+                <li>
+                    Use spaces to set off variables in import/export statements.
+                    <a href="#accordion17" data-toggle="collapse" aria-expanded="false" aria-controls="accordion17">Example</a>
 
+                    <pre id="accordion17" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+import {VideoPopup, HelpInfo} from "./components";
+export {Search,Tabs};
+
+// good
+import { VideoPopup, HelpInfo } from './components';
+export { Search, Tabs };
+</code>
+            </pre>
+                </li>
+                <li>
+                    Use spaces to set off variables inside inline objects.
+                    <a href="#accordion18" data-toggle="collapse" aria-expanded="false" aria-controls="accordion18">Example</a>
+
+                    <pre id="accordion18" class="collapse" role="tabpanel">
+<code class="js">
+// bad
+const config = {size: 3};
+const player = {videos:[],limit:3};
+
+// good
+const config = { size: 3 };
+const player = { videos: [], limit: 3 };
+</code>
+            </pre>
+                </li>
                 <li>
                     Use indentation when making long method chains. Use a leading dot, which emphasizes that the line
                     is a method call, not a new statement.
