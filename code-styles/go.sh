@@ -1,7 +1,7 @@
 #!/bin/bash
 
-date 0320151018
-NUM=6
+date 0319151018
+NUM=1
 
 for i in $(seq 1 $NUM)
 do
