@@ -1,4 +1,8 @@
 #!/bin/bash
-echo 123 > test.html
-git add .
-git commit -m "stat commit"
+
+for i in {0..10}
+do
+    echo "$i" > test.html
+    git add .
+    git commit -m "stat commit"
+done
